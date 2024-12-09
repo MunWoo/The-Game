@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Player\ThirdPersonCam.cs" />
     <Compile Include="Assets\Scripts\Player\MoveCamera.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 01.cs" />
+    <Compile Include="Assets\Scripts\Player\Player Stats.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>

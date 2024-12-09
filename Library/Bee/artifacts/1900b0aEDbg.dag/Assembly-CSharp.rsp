@@ -362,6 +362,7 @@
 "Assets/Scripts/Gun 01/Gun 01.cs"
 "Assets/Scripts/Gun 01/Gun 02.cs"
 "Assets/Scripts/Player/MoveCamera.cs"
+"Assets/Scripts/Player/Player Stats.cs"
 "Assets/Scripts/Player/PlayerCam.cs"
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/Player/ThirdPersonCam.cs"
