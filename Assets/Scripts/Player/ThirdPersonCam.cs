@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ThirdPersonCam : MonoBehaviour
 {
@@ -27,15 +28,30 @@ public class ThirdPersonCam : MonoBehaviour
         Combat
     }
 
+    private bool isCursorLocked = true; // Initial state
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
     }
 
     void Update()
     {
+        // Check if Keypad 1 is pressed
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            // Toggle the cursor lock state
+            isCursorLocked = !isCursorLocked;
+
+            // Apply the toggle to the cursor settings
+            Cursor.visible = !isCursorLocked;
+            Cursor.lockState = isCursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
+
+            Debug.Log("Cursor is now " + (isCursorLocked ? "Locked and Invisible" : "Unlocked and Visible"));
+        }
+
+
+
         //Rotate Orientation
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;

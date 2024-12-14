@@ -7,7 +7,8 @@ public class Gun02 : MonoBehaviour
 {
     //Bullet
     public GameObject bullet;
-
+    //Gun Damage
+    public int gunDamage;
     //Bullet force
     public float shootForce, upwardForce;
 
@@ -75,17 +76,10 @@ public class Gun02 : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
-
-        // Find the position to hit with raycast (directly forward from the fpsCam)
-        Ray ray = new Ray(fpsCam.transform.position, fpsCam.transform.forward); // Ray going forward from the camera
-        RaycastHit hit;
-
         // Check if the raycast hit anything
         Vector3 targetPoint;
-        if (Physics.Raycast(ray, out hit))
-            targetPoint = hit.point;
-        else
-            targetPoint = fpsCam.transform.position + fpsCam.transform.forward * 75; // A point far from the camera if not hitting anything
+
+        targetPoint = fpsCam.transform.position + fpsCam.transform.forward * 75; // A point far from the camera if not hitting anything
 
         // Calculate direction from attackPoint to targetPoint
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
@@ -101,6 +95,7 @@ public class Gun02 : MonoBehaviour
         GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
         //Rotate bullet to shoot Direction
         currentBullet.transform.forward = directionWithSpread.normalized;
+        currentBullet.GetComponent<bullet>().damage = gunDamage;
 
         //Add Forces to Bullet
         currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
@@ -117,7 +112,6 @@ public class Gun02 : MonoBehaviour
             allowInvoke = false;
         }
 
-        Debug.Log("Bullets Left" + bulletsLeft);
         //If more than one bulletPerTap repeat shoot function
         //if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
         //    Invoke("Shoot", timeBetweenShoots);
@@ -141,6 +135,7 @@ public class Gun02 : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         reloading = false;
+        Debug.Log("Can shoot again");
     }
 
 }
