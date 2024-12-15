@@ -69,10 +69,13 @@
     <Compile Include="Assets\Scripts\Gun 01\Gun 02.cs" />
     <Compile Include="Assets\Scripts\Items\ItemController.cs" />
     <Compile Include="Assets\Scripts\Player\ThirdPersonCam.cs" />
+    <Compile Include="Assets\Scripts\Items\InventoryItemController.cs" />
+    <Compile Include="Assets\Scripts\Items\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Player\MoveCamera.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\ExperienceBar.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Items\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 01.cs" />
     <Compile Include="Assets\Scripts\Enemies\Test Enemy\TestEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
