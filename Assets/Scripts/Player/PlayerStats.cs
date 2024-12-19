@@ -17,6 +17,10 @@ public class PlayerStats : MonoBehaviour
     public HealthBar healthBar;
     public ExperienceBar experienceBar;
 
+    [Header("Inventories")]
+    public InventoryObject inventory;
+    public DisplayInventory displayInventory;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -45,5 +49,20 @@ public class PlayerStats : MonoBehaviour
         experienceBar.SetMaxExperience(maxExperience);
         experienceBar.UpdateExperience(currentExperience);
         level++;
+    }
+
+    public void OnCollisionEnter(Collision other)
+    {
+        var item = other.gameObject.GetComponent<Item>();
+        if (item)
+        {
+            inventory.AddItem(item.item, 1);
+            displayInventory.UpdateDisplay();
+            Destroy(other.gameObject);
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Clear();
     }
 }

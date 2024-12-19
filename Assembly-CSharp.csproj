@@ -64,22 +64,24 @@
     <Analyzer Include="C:\Users\Miro\Desktop\Tudo\Programas\Unity\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCam.cs" />
+    <Compile Include="Assets\Inventory\Scripts\Inventory\InventoryObject.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 02.cs" />
-    <Compile Include="Assets\Scripts\Items\ItemController.cs" />
     <Compile Include="Assets\Scripts\Player\ThirdPersonCam.cs" />
-    <Compile Include="Assets\Scripts\Items\InventoryItemController.cs" />
-    <Compile Include="Assets\Scripts\Items\InventoryManager.cs" />
+    <Compile Include="Assets\Inventory\Scripts\Inventory\DisplayInventory.cs" />
+    <Compile Include="Assets\Inventory\Scripts\FoodObject.cs" />
     <Compile Include="Assets\Scripts\Player\MoveCamera.cs" />
+    <Compile Include="Assets\Inventory\Scripts\ItemObject.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\ExperienceBar.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\HealthBar.cs" />
-    <Compile Include="Assets\Scripts\Items\ItemPickup.cs" />
+    <Compile Include="Assets\Inventory\Scripts\DefaultObject.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 01.cs" />
     <Compile Include="Assets\Scripts\Enemies\Test Enemy\TestEnemy.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Inventory\Item.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+    <Compile Include="Assets\Inventory\Scripts\EquipmentObject.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Bullets\bullet.cs" />
   </ItemGroup>
   <ItemGroup>

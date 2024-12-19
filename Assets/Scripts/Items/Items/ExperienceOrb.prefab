@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 105502661243067459}
   - component: {fileID: 1082480767747295274}
   - component: {fileID: 5950592924951653609}
-  - component: {fileID: -6916579252694782595}
-  - component: {fileID: 5909625321867270649}
   m_Layer: 0
   m_Name: ExperienceOrb
   m_TagString: Untagged
@@ -135,29 +133,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-6916579252694782595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3874526427941896333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a53faa0b05def4eadd568e5a1af877, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 1e1e1e4bdb883e04c94084d1d9fd91c3, type: 2}
---- !u!114 &5909625321867270649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3874526427941896333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e7ea4a90f31e043830ef4b516e2682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 1e1e1e4bdb883e04c94084d1d9fd91c3, type: 2}
