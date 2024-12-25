@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class PlayerStats : MonoBehaviour
     public ExperienceBar experienceBar;
 
     [Header("Inventories")]
-    public InventoryObject inventory;
+    public Inventory inventory;
     public DisplayInventory displayInventory;
 
     void Start()
@@ -39,6 +41,19 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        //Save and Load Inventory
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            inventory.Save();
+        }
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            inventory.Load();
+        }
+    }
+
     void LevelUp()
     {
         currentExperience -= maxExperience;
@@ -53,11 +68,12 @@ public class PlayerStats : MonoBehaviour
 
     public void OnCollisionEnter(Collision other)
     {
-        var item = other.gameObject.GetComponent<Item>();
-        if (item)
+        var itemInfo = other.gameObject.GetComponent<ItemInfo>();
+        if (itemInfo)
         {
-            inventory.AddItem(item.item, 1);
-            displayInventory.UpdateDisplay();
+            //AddItem( itemId, itemName, itemType, amount(1) )
+            inventory.AddItem(itemInfo.itemInfo, 1);
+            displayInventory.UpdateInventory();
             Destroy(other.gameObject);
         }
     }

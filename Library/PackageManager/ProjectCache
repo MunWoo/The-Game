@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638690486834308499
+      ticks: 638702198100000000
     m_Hash: 1910659340
   m_LockFileStatus:
     m_FilePath: C:/Users/Miro/Desktop/Tudo/Games/The-Game/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638690486834346402
+      ticks: 638702198100000000
     m_Hash: 138874119
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -583,6 +583,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.8
     - 3.2.0-pre.9
     - 3.2.0-pre.10
+    - 3.2.0-pre.11
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     compatible:
@@ -600,6 +601,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.8
     - 3.2.0-pre.9
     - 3.2.0-pre.10
+    - 3.2.0-pre.11
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     recommended: 3.0.9
@@ -3291,9 +3293,11 @@ m_ResolvedPackages:
     - 1.1.0
     - 1.1.1
     - 1.2.2
+    - 1.2.3
     compatible:
     - 1.2.2
-    recommended: 1.2.2
+    - 1.2.3
+    recommended: 1.2.3
     deprecated: []
   dependencies: []
   resolvedDependencies: []
