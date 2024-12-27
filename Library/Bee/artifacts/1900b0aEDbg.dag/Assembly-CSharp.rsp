@@ -359,7 +359,7 @@
 -analyzer:"C:/Users/Miro/Desktop/Tudo/Programas/Unity/2022.3.36f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Users/Miro/Desktop/Tudo/Programas/Unity/2022.3.36f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/NewInventory/DisplayInventory.cs"
-"Assets/NewInventory/ItemInfo.cs"
+"Assets/NewInventory/GroundItem.cs"
 "Assets/NewInventory/ScriptableObjects/Scripts/BaseObject.cs"
 "Assets/NewInventory/ScriptableObjects/Scripts/EquipmentObject.cs"
 "Assets/NewInventory/ScriptableObjects/Scripts/Inventory.cs"

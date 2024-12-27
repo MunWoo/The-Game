@@ -68,13 +68,13 @@
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\BaseObject.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 02.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputs.cs" />
+    <Compile Include="Assets\NewInventory\GroundItem.cs" />
     <Compile Include="Assets\Scripts\Player\ThirdPersonCam.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\MiscObject.cs" />
     <Compile Include="Assets\Scripts\Player\MoveCamera.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\ExperienceBar.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\HealthBar.cs" />
-    <Compile Include="Assets\NewInventory\ItemInfo.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 01.cs" />
     <Compile Include="Assets\Scripts\Enemies\Test Enemy\TestEnemy.cs" />

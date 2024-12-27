@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f15c36dbe7152243949ba20749ae03c, type: 3}
   m_Name: Sword 1
   m_EditorClassIdentifier: 
+  itemId: 3
   itemName: Sword 1
   itemType: 0
-  itemSprite: {fileID: 21300000, guid: 1f8a7b8172dc47746a0e4de028a79f07, type: 3}
+  itemSprite: {fileID: 21300000, guid: 993b2cba179a89244be8a64592f9f06d, type: 3}
   attack: 20
   defence: 0

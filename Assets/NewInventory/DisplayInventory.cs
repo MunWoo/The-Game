@@ -9,23 +9,50 @@ public class DisplayInventory : MonoBehaviour
     public GameObject inventoryUI;
     public Inventory inventory;
     public GameObject inventorySlotPrefab;
+    Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
 
-    public void UpdateInventory()
+    private void Start()
     {
-        // Clear the current UI slots (optional: if inventory slots persist between updates)
-        foreach (Transform child in inventoryUI.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        CreateDisplay();
+    }
 
-        for (int i = 0; i < inventory.Container.Count; i++)
+    public void CreateDisplay()
+    {
+        for (int i = 0; i < inventory.Container.Items.Count; i++)
         {
-
+            InventorySlot slot = inventory.Container.Items[i];
             var obj = Instantiate(inventorySlotPrefab, inventoryUI.transform);
             Image itemSprite = obj.transform.Find("ItemSprite").GetComponent<Image>();
             TextMeshProUGUI itemAmount = obj.GetComponentInChildren<TextMeshProUGUI>();
-            itemSprite.sprite = inventory.Container[i].item.itemSprite;
-            itemAmount.text = inventory.Container[i].amount.ToString();
+            itemSprite.sprite = inventory.itemDatabase.GetItem[slot.item.Id].itemSprite;
+            itemAmount.text = inventory.Container.Items[i].amount.ToString();
+            itemsDisplayed.Add(slot, obj);
+        }
+    }
+
+
+    public void Update()
+    {
+        UpdateDisplay();
+    }
+    public void UpdateDisplay()
+    {
+        for (int i = 0; i < inventory.Container.Items.Count; i++)
+        {
+            InventorySlot slot = inventory.Container.Items[i];
+            if (itemsDisplayed.ContainsKey(slot))
+            {
+                itemsDisplayed[slot].GetComponentInChildren<TextMeshProUGUI>().text = slot.amount.ToString();
+            }
+            else
+            {
+                var obj = Instantiate(inventorySlotPrefab, inventoryUI.transform);
+                Image itemSprite = obj.transform.Find("ItemSprite").GetComponent<Image>();
+                TextMeshProUGUI itemAmount = obj.GetComponentInChildren<TextMeshProUGUI>();
+                itemSprite.sprite = inventory.itemDatabase.GetItem[slot.item.Id].itemSprite;
+                itemAmount.text = inventory.Container.Items[i].amount.ToString();
+                itemsDisplayed.Add(slot, obj);
+            }
         }
     }
 }

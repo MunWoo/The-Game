@@ -68,17 +68,15 @@ public class PlayerStats : MonoBehaviour
 
     public void OnCollisionEnter(Collision other)
     {
-        var itemInfo = other.gameObject.GetComponent<ItemInfo>();
+        var itemInfo = other.gameObject.GetComponent<GroundItem>();
         if (itemInfo)
         {
-            //AddItem( itemId, itemName, itemType, amount(1) )
-            inventory.AddItem(itemInfo.itemInfo, 1);
-            displayInventory.UpdateInventory();
+            inventory.AddItem(new Item(itemInfo.itemInfo), 1);
             Destroy(other.gameObject);
         }
     }
     private void OnApplicationQuit()
     {
-        inventory.Container.Clear();
+        inventory.Container.Items.Clear();
     }
 }
