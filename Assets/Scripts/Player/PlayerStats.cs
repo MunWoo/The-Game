@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class PlayerStats : MonoBehaviour
 {
+    public MouseItem mouseItem = new MouseItem();
+
     [Header("Player Stats")]
     public int currentHealth;
     public int maxHealth;

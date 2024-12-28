@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   itemName: Gold
-  itemType: 0
+  itemType: 5
   itemSprite: {fileID: 21300000, guid: f65592ad3d0b3254ea79a24288a2ad13, type: 3}
+  buffs: []
   Description: This is a Description

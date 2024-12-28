@@ -5,7 +5,11 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Equipment,
+    Helmet,
+    Weapon,
+    Chestplate,
+    Leggins,
+    Shield,
     Misc
 }
 public enum Attributes
@@ -39,6 +43,11 @@ public class Item
     public string Name;
     public int Id;
     public ItemBuff[] buffs;
+    public Item()
+    {
+        Name = "";
+        Id = -1;
+    }
     public Item(BaseObject item)
     {
         Name = item.itemName;
