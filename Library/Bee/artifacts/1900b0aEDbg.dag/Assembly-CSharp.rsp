@@ -361,6 +361,7 @@
 "Assets/NewInventory/DisplayInventory.cs"
 "Assets/NewInventory/DynamicInterface.cs"
 "Assets/NewInventory/GroundItem.cs"
+"Assets/NewInventory/ItemDescriptionWindow.cs"
 "Assets/NewInventory/ScriptableObjects/Scripts/BaseObject.cs"
 "Assets/NewInventory/ScriptableObjects/Scripts/EquipmentObject.cs"
 "Assets/NewInventory/ScriptableObjects/Scripts/Inventory.cs"

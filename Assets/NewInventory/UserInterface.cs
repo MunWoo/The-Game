@@ -11,6 +11,7 @@ public abstract class UserInterface : MonoBehaviour
     public PlayerStats player;
     public GameObject inventoryUI;
     public Inventory inventory;
+    public ItemDescriptionWindow itemDescriptionWindow;
 
     public Dictionary<GameObject, InventorySlot> itemsDisplayed = new Dictionary<GameObject, InventorySlot>();
 
@@ -61,15 +62,19 @@ public abstract class UserInterface : MonoBehaviour
     public void OnEnter(GameObject obj)
     {
         player.mouseItem.hoverObj = obj;
+        InventorySlot slot = itemsDisplayed[obj];
         if (itemsDisplayed.ContainsKey(obj))
         {
             player.mouseItem.hoverItem = itemsDisplayed[obj];
+            itemDescriptionWindow.DisplayDescription(slot);
         }
     }
+
     public void OnExit(GameObject obj)
     {
         player.mouseItem.hoverObj = null;
         player.mouseItem.hoverItem = null;
+        itemDescriptionWindow.CloseDisplayWindow();
     }
     public void OnEnterInterface(GameObject obj)
     {
@@ -84,7 +89,7 @@ public abstract class UserInterface : MonoBehaviour
     {
         var mouseObject = new GameObject();
         var rt = mouseObject.AddComponent<RectTransform>();
-        rt.sizeDelta = new Vector2(80, 80);
+        rt.sizeDelta = new Vector2(60, 60);
         mouseObject.transform.SetParent(transform.parent);
         if (itemsDisplayed[obj].ID >= 0)
         {
@@ -126,6 +131,15 @@ public abstract class UserInterface : MonoBehaviour
             player.mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
         }
     }
+    public void ItemDescriptionEnter()
+    {
+
+    }
+
+
+
+
+
 
 }
 public class MouseItem

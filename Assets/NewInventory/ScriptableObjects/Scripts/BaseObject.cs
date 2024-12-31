@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -50,13 +51,49 @@ public class Item
     }
     public Item(BaseObject item)
     {
+        if (item == null)
+        {
+            Debug.LogError("BaseObject 'item' is null!");
+            return;
+        }
+
+        if (item.buffs == null)
+        {
+            Debug.LogError($"BaseObject 'item.buffs' is null for item {item.itemName}!");
+            return;
+        }
+
         Name = item.itemName;
+        Debug.Log($"Item Name: {Name}");
         Id = item.itemId;
+        Debug.Log($"Item ID: {Id}");
         buffs = new ItemBuff[item.buffs.Length];
+
         for (int i = 0; i < buffs.Length; i++)
         {
-            buffs[i] = new ItemBuff(item.buffs[i].min, item.buffs[i].max);
-            buffs[i].attributes = item.buffs[i].attributes;
+            if (item.buffs[i] == null)
+            {
+                Debug.LogError($"ItemBuff at index {i} is null!");
+                continue;
+            }
+
+            // Initialize each buff
+            buffs[i] = new ItemBuff(item.buffs[i].min, item.buffs[i].max)
+            {
+                attributes = item.buffs[i].attributes
+            };
+        }
+
+        // Sort buffs array by value in descending order
+        Array.Sort(buffs, (a, b) => b.value.CompareTo(a.value));
+
+        // Log sorted buffs
+        foreach (var buff in buffs)
+        {
+            if (buff != null)
+            {
+                Debug.Log($"Attribute: {buff.attributes}, Value: {buff.value}");
+            }
         }
     }
 }

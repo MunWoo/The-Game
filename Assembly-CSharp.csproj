@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Player\MoveCamera.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\ExperienceBar.cs" />
+    <Compile Include="Assets\NewInventory\ItemDescriptionWindow.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\HealthBar.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\Inventory.cs" />
     <Compile Include="Assets\NewInventory\UserInterface.cs" />
