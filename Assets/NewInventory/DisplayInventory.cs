@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 public class DisplayInventory : MonoBehaviour
-{
-    public MouseItem mouseItem = new MouseItem();
+{/*
+    //public MouseItem mouseItem = new MouseItem();
     public GameObject inventoryUI;
     public Inventory inventory;
     public GameObject inventorySlotPrefab;
@@ -48,7 +48,7 @@ public class DisplayInventory : MonoBehaviour
             itemAmount.text = inventory.Container.Items[i].amount.ToString();
             itemsDisplayed.Add(slot, obj);
         }
-        */
+        
     }
 
 
@@ -61,9 +61,9 @@ public class DisplayInventory : MonoBehaviour
     {
         foreach (KeyValuePair<GameObject, InventorySlot> _slot in itemsDisplayed)
         {
-            if (_slot.Value.ID >= 0)
+            if (_slot.Value.item.Id  >= 0)
             {
-                _slot.Key.transform.Find("ItemSprite").GetComponent<Image>().sprite = inventory.itemDatabase.GetItem[_slot.Value.ID].itemSprite;
+                _slot.Key.transform.Find("ItemSprite").GetComponent<Image>().sprite = inventory.itemDatabase.GetItem[_slot.Value.item.Id ].itemSprite;
                 _slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = _slot.Value.amount == 1 ? "" : _slot.Value.amount.ToString();
 
             }
@@ -102,10 +102,10 @@ public class DisplayInventory : MonoBehaviour
         var rt = mouseObject.AddComponent<RectTransform>();
         rt.sizeDelta = new Vector2(80, 80);
         mouseObject.transform.SetParent(transform.parent.parent);
-        if (itemsDisplayed[obj].ID >= 0)
+        if (itemsDisplayed[obj].item.Id  >= 0)
         {
             var img = mouseObject.AddComponent<Image>();
-            img.sprite = inventory.itemDatabase.GetItem[itemsDisplayed[obj].ID].itemSprite;
+            img.sprite = inventory.itemDatabase.GetItem[itemsDisplayed[obj].item.Id].itemSprite;
             img.raycastTarget = false;
         }
         mouseItem.obj = mouseObject;
@@ -134,4 +134,5 @@ public class DisplayInventory : MonoBehaviour
         }
     }
 
+*/
 }

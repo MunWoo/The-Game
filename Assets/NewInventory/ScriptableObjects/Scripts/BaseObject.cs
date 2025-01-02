@@ -21,15 +21,13 @@ public enum Attributes
     AttackSpeed
 
 }
-
 public class BaseObject : ScriptableObject
 {
-    public int itemId;
     public string itemName;
+    public bool stackable;
     public ItemType itemType;
     public Sprite itemSprite;
-    public ItemBuff[] buffs;
-
+    public Item data = new Item();
     public Item CreateItem()
     {
         Item newItem = new Item(this);
@@ -42,7 +40,7 @@ public class BaseObject : ScriptableObject
 public class Item
 {
     public string Name;
-    public int Id;
+    public int Id = -1;
     public ItemBuff[] buffs;
     public Item()
     {
@@ -51,41 +49,26 @@ public class Item
     }
     public Item(BaseObject item)
     {
-        if (item == null)
-        {
-            Debug.LogError("BaseObject 'item' is null!");
-            return;
-        }
-
-        if (item.buffs == null)
-        {
-            Debug.LogError($"BaseObject 'item.buffs' is null for item {item.itemName}!");
-            return;
-        }
-
         Name = item.itemName;
-        Debug.Log($"Item Name: {Name}");
-        Id = item.itemId;
-        Debug.Log($"Item ID: {Id}");
-        buffs = new ItemBuff[item.buffs.Length];
-
-        for (int i = 0; i < buffs.Length; i++)
+        Id = item.data.Id;
+        if (item.data.buffs != null)
         {
-            if (item.buffs[i] == null)
+            buffs = new ItemBuff[item.data.buffs.Length];
+            for (int i = 0; i < buffs.Length; i++)
             {
-                Debug.LogError($"ItemBuff at index {i} is null!");
-                continue;
+                // Initialize each buff
+                buffs[i] = new ItemBuff(item.data.buffs[i].min, item.data.buffs[i].max)
+                {
+                    attributes = item.data.buffs[i].attributes
+                };
             }
 
-            // Initialize each buff
-            buffs[i] = new ItemBuff(item.buffs[i].min, item.buffs[i].max)
-            {
-                attributes = item.buffs[i].attributes
-            };
         }
 
         // Sort buffs array by value in descending order
         Array.Sort(buffs, (a, b) => b.value.CompareTo(a.value));
+
+
 
         // Log sorted buffs
         foreach (var buff in buffs)

@@ -28,8 +28,8 @@ public class ItemDescriptionWindow : MonoBehaviour
             descriptionWindow.SetActive(true);
 
             //Get the image of the item
-            if (itemDatabase.GetItem[obj.item.Id].itemSprite != null)
-                image.sprite = itemDatabase.GetItem[obj.item.Id].itemSprite;
+            if (itemDatabase.ItemObjects[obj.item.Id].itemSprite != null)
+                image.sprite = itemDatabase.ItemObjects[obj.item.Id].itemSprite;
             else Debug.Log("There is no sprite in database of " + obj.item.Id + " ID");
 
             //Get the name of the item

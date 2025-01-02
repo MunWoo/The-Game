@@ -4091,7 +4091,7 @@ MonoBehaviour:
   healthBar: {fileID: 1014926273}
   experienceBar: {fileID: 132263493}
   inventory: {fileID: 11400000, guid: 97468430db87ed049b8f3cb847241d04, type: 2}
-  displayInventory: {fileID: 0}
+  equipment: {fileID: 11400000, guid: e88c7d36ed47d7347a54f04e48631e21, type: 2}
 --- !u!114 &1139799987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4618,6 +4618,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 591172564044462153, guid: 42c1b8deeffcdbf41810ead58e349163, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2570978519030067789, guid: 42c1b8deeffcdbf41810ead58e349163, type: 3}
       propertyPath: m_Name
       value: Gold
@@ -4908,7 +4912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2080156c1cf653d4ca16c7dfc460e2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1139799986}
   inventoryUI: {fileID: 1593093301}
   inventory: {fileID: 11400000, guid: 97468430db87ed049b8f3cb847241d04, type: 2}
   itemDescriptionWindow: {fileID: 1101114298}
@@ -6108,7 +6111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de42710637ad2c439c26c30cf424bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1139799986}
   inventoryUI: {fileID: 0}
   inventory: {fileID: 11400000, guid: e88c7d36ed47d7347a54f04e48631e21, type: 2}
   itemDescriptionWindow: {fileID: 1101114298}
@@ -6859,6 +6861,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1764767832848785163, guid: 05804fa572b3dbf40970e8c4a551ab81, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492094300418625629, guid: 05804fa572b3dbf40970e8c4a551ab81, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492094300418625629, guid: 05804fa572b3dbf40970e8c4a551ab81, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6875,6 +6889,14 @@ PrefabInstance:
     - target: {fileID: 2911798773600571151, guid: 2e02334d0169fee43b9a625bf5a7ad45, type: 3}
       propertyPath: m_Name
       value: Sword 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4263187635069146393, guid: 2e02334d0169fee43b9a625bf5a7ad45, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4263187635069146393, guid: 2e02334d0169fee43b9a625bf5a7ad45, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7001660804703209338, guid: 2e02334d0169fee43b9a625bf5a7ad45, type: 3}
       propertyPath: itemInfo
@@ -6977,6 +6999,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7607607331043483256, guid: dff66b0802f3cdc4196fe9f1254a3174, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607607331043483256, guid: dff66b0802f3cdc4196fe9f1254a3174, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7034,6 +7064,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Helmet
       objectReference: {fileID: 0}
+    - target: {fileID: 9169943715695681670, guid: 0da74275b25615f4793e2d8cce7557c5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7087,6 +7121,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5133811683144186965, guid: a8fafc027e3441f4dbc017382a785a86, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6205752409134057591, guid: a8fafc027e3441f4dbc017382a785a86, type: 3}
       propertyPath: m_Name
       value: Chestplate
@@ -7104,6 +7142,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 603387715854814951, guid: 277a26a86f30b6f48b6066f1d970c36e, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 603387715854814951, guid: 277a26a86f30b6f48b6066f1d970c36e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3432809787496326386, guid: 277a26a86f30b6f48b6066f1d970c36e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.106
@@ -7147,6 +7193,10 @@ PrefabInstance:
     - target: {fileID: 5284627755523896717, guid: 277a26a86f30b6f48b6066f1d970c36e, type: 3}
       propertyPath: m_Name
       value: Sword 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8226093340967940118, guid: 277a26a86f30b6f48b6066f1d970c36e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7203,6 +7253,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1818113127154519376, guid: ef5cf87f02825574a840af3e0e7966a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308215791900747185, guid: ef5cf87f02825574a840af3e0e7966a3, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

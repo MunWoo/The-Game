@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PlayerStats : MonoBehaviour
 {
-    public MouseItem mouseItem = new MouseItem();
-
     [Header("Player Stats")]
     public int currentHealth;
     public int maxHealth;
@@ -23,7 +20,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Inventories")]
     public Inventory inventory;
-    public DisplayInventory displayInventory;
+    public Inventory equipment;
 
     void Start()
     {
@@ -49,10 +46,12 @@ public class PlayerStats : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F5))
         {
             inventory.Save();
+            equipment.Save();
         }
         if (Input.GetKeyDown(KeyCode.F8))
         {
             inventory.Load();
+            equipment.Load();
         }
     }
 
@@ -73,12 +72,16 @@ public class PlayerStats : MonoBehaviour
         var itemInfo = other.gameObject.GetComponent<GroundItem>();
         if (itemInfo)
         {
-            inventory.AddItem(new Item(itemInfo.itemInfo), 1);
-            Destroy(other.gameObject);
+            Item _item = new Item(itemInfo.itemInfo);
+            if (inventory.AddItem(_item, 1))
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
     private void OnApplicationQuit()
     {
-        inventory.Container.Items = new InventorySlot[30];
+        inventory.Container.Clear();
+        equipment.Container.Clear();
     }
 }
