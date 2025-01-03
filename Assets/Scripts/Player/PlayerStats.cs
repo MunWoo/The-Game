@@ -22,11 +22,15 @@ public class PlayerStats : MonoBehaviour
     public Inventory inventory;
     public Inventory equipment;
 
-    void Start()
+    [Header("Attributes")]
+    public Attribute[] attributes;
+
+    private void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         experienceBar.SetMaxExperience(maxExperience);
+        UpdateAttributes();
     }
 
     public void GainExperience(int experience)
@@ -79,9 +83,106 @@ public class PlayerStats : MonoBehaviour
             }
         }
     }
+
+    public void AttributeModified(Attribute attribute)
+    {
+        Debug.Log(string.Concat(attribute.type, "was updated! Value is now ", attribute.value.ModifiedValue));
+    }
+    private void UpdateAttributes()
+    {
+        for (int i = 0; i < attributes.Length; i++)
+        {
+            attributes[i].SetParent(this);
+        }
+        for (int i = 0; i < equipment.GetSlots.Length; i++)
+        {
+            equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
+            equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
+        }
+    }
+
+    //Equiping items in here!
+    public void OnBeforeSlotUpdate(InventorySlot _slot)
+    {
+        if (_slot.BaseObject == null)
+            return;
+        switch (_slot.parent.inventory.type)
+        {
+            case InterfaceType.Inventory:
+                break;
+            case InterfaceType.Equipment:
+                print(string.Concat("Removed ", _slot.BaseObject.name, " on ", _slot.parent.inventory.type, ", Allowed Items: ", string.Join(" ,", _slot.AllowedItems)));
+
+                for (int i = 0; i < _slot.item.buffs.Length; i++)
+                {
+                    for (int j = 0; j < attributes.Length; j++)
+                    {
+                        if (attributes[j].type == _slot.item.buffs[i].attributes)
+                            attributes[j].value.RemoveModifier(_slot.item.buffs[i]);
+                    }
+                }
+
+                break;
+            case InterfaceType.Chest:
+                break;
+            default:
+                break;
+        }
+    }
+
+    //Unequiping items in here!
+    public void OnAfterSlotUpdate(InventorySlot _slot)
+    {
+        if (_slot.BaseObject == null)
+            return;
+        switch (_slot.parent.inventory.type)
+        {
+            case InterfaceType.Inventory:
+                break;
+            case InterfaceType.Equipment:
+                print(string.Concat("Placed ", _slot.BaseObject.name, " on ", _slot.parent.inventory.type, ", Allowed Items: ", string.Join(" ,", _slot.AllowedItems)));
+
+                for (int i = 0; i < _slot.item.buffs.Length; i++)
+                {
+                    for (int j = 0; j < attributes.Length; j++)
+                    {
+                        if (attributes[j].type == _slot.item.buffs[i].attributes)
+                            attributes[j].value.AddModifier(_slot.item.buffs[i]);
+                    }
+                }
+
+                break;
+            case InterfaceType.Chest:
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
     private void OnApplicationQuit()
     {
-        inventory.Container.Clear();
-        equipment.Container.Clear();
+        inventory.Clear();
+        equipment.Clear();
+    }
+}
+
+[System.Serializable]
+public class Attribute
+{
+    [System.NonSerialized]
+    public PlayerStats parent;
+    public Attributes type;
+    public ModifiableInt value;
+
+    public void SetParent(PlayerStats _parent)
+    {
+        parent = _parent;
+        value = new ModifiableInt(AttribueModified);
+    }
+    public void AttribueModified()
+    {
+        parent.AttributeModified(this);
     }
 }

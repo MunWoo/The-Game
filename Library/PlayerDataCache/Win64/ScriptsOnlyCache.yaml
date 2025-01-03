@@ -67,10 +67,12 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
   serializedClasses:
     Assembly-CSharp:
+    - Attribute
     - InventoryObject
     - InventorySlot
     - Item
     - ItemBuff
+    - ModifiableInt
     Cinemachine:
     - Cinemachine.AxisState
     - Cinemachine.AxisState/Recentering
@@ -299,7 +301,7 @@ ScriptsOnlyBuild:
     className: Image
   - hash:
       serializedVersion: 2
-      Hash: a885a04df4866bd00689aae286e1d181
+      Hash: 69385c0c9338bb6e43ba8e540ffe8e37
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Inventory
@@ -941,7 +943,7 @@ ScriptsOnlyBuild:
     className: EnableIffSleeping
   - hash:
       serializedVersion: 2
-      Hash: fa0a90d366226a0e415d76d94f05e77c
+      Hash: bcac8c7e8f3e3152ba7e5cce88be0ddf
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: ItemDatabase
@@ -1031,7 +1033,7 @@ ScriptsOnlyBuild:
     className: CinemachinePath
   - hash:
       serializedVersion: 2
-      Hash: ff54917508a07b5878ba992cab447f8f
+      Hash: c2d067078f885bf9453b290a0490a41c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerStats
@@ -1644,4 +1646,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Miro/Desktop/Tudo/Games/The-Game/Build/Test The Game.exe
+  playerPath: C:/Users/Miro/Desktop/Tudo/Games/The-Game Build/Test The Game.exe

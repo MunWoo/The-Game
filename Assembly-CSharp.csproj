@@ -82,6 +82,8 @@
     <Compile Include="Assets\NewInventory\UserInterface.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 01.cs" />
     <Compile Include="Assets\Scripts\Enemies\Test Enemy\TestEnemy.cs" />
+    <Compile Include="Assets\NewInventory\IModifiers.cs" />
+    <Compile Include="Assets\NewInventory\ModifiableInt.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\EquipmentObject.cs" />
     <Compile Include="Assets\NewInventory\DisplayInventory.cs" />

@@ -4092,6 +4092,23 @@ MonoBehaviour:
   experienceBar: {fileID: 132263493}
   inventory: {fileID: 11400000, guid: 97468430db87ed049b8f3cb847241d04, type: 2}
   equipment: {fileID: 11400000, guid: e88c7d36ed47d7347a54f04e48631e21, type: 2}
+  attributes:
+  - type: 0
+    value:
+      baseValue: 0
+      modifiedValue: 0
+  - type: 1
+    value:
+      baseValue: 0
+      modifiedValue: 0
+  - type: 2
+    value:
+      baseValue: 0
+      modifiedValue: 0
+  - type: 3
+    value:
+      baseValue: 0
+      modifiedValue: 0
 --- !u!114 &1139799987
 MonoBehaviour:
   m_ObjectHideFlags: 0

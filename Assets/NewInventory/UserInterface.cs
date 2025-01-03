@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using System;
 
 public abstract class UserInterface : MonoBehaviour
 {
@@ -16,21 +17,38 @@ public abstract class UserInterface : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < inventory.Container.Slots.Length; i++)
+        for (int i = 0; i < inventory.GetSlots.Length; i++)
         {
-            inventory.Container.Slots[i].parent = this;
+            inventory.GetSlots[i].parent = this;
+            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
         }
         CreateSlots();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
     }
 
-    public abstract void CreateSlots();
+    private void OnSlotUpdate(InventorySlot _slot)
+    {
+        if (_slot.item.Id >= 0)
+        {
+            _slot.slotDisplay.transform.Find("ItemSprite").GetComponent<Image>().sprite = _slot.BaseObject.itemSprite;
+            _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amount == 1 ? "" : _slot.amount.ToString();
 
+        }
+        else
+        {
+            _slot.slotDisplay.transform.Find("ItemSprite").GetComponent<Image>().sprite = null;
+            _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
+        }
+    }
+
+    public abstract void CreateSlots();
+    /*
     public void Update()
     {
         slotsOnInterface.UpdateSlotDisplay();
     }
+    */
     protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
