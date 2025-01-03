@@ -7,5 +7,38 @@ using UnityEngine.UI;
 
 public class PlayerInputs : MonoBehaviour
 {
+    List<GameObject> UiWindows = new List<GameObject>();
+    public GameObject InventoryWindow;
+    public GameObject EquipmentWindow;
 
+    public void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            InventoryWindow.SetActive(!InventoryWindow.activeSelf);
+            if (InventoryWindow.activeSelf)
+                UiWindows.Add(InventoryWindow);
+            if (!InventoryWindow.activeSelf)
+                UiWindows.Remove(InventoryWindow);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            EquipmentWindow.SetActive(!EquipmentWindow.activeSelf);
+            if (EquipmentWindow.activeSelf)
+                UiWindows.Add(EquipmentWindow);
+            if (!EquipmentWindow.activeSelf)
+                UiWindows.Remove(EquipmentWindow);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (UiWindows.Count >= 0)
+            {
+                UiWindows[UiWindows.Count - 1].SetActive(false);
+                UiWindows.RemoveAt(UiWindows.Count - 1);
+                Debug.Log("Tried to close the window at the " + UiWindows.Count + " Index");
+            }
+            else Debug.Log("No more windows to close");
+        }
+        Debug.Log("There are " + UiWindows.Count + " Ui Windows opened!");
+    }
 }

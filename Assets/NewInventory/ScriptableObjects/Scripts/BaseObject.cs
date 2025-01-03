@@ -15,10 +15,10 @@ public enum ItemType
 }
 public enum Attributes
 {
-    Agility,
-    Strength,
+    Strenght,
     Defence,
-    AttackSpeed
+    Speed,
+    AttackRate
 
 }
 public class BaseObject : ScriptableObject

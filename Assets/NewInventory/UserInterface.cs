@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using System;
+using Unity.VisualScripting;
 
 public abstract class UserInterface : MonoBehaviour
 {
@@ -23,8 +24,13 @@ public abstract class UserInterface : MonoBehaviour
             inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
         }
         CreateSlots();
+        slotsOnInterface.UpdateSlotDisplay();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
+    }
+    private void OnEnable()
+    {
+        slotsOnInterface.UpdateSlotDisplay();
     }
 
     private void OnSlotUpdate(InventorySlot _slot)
@@ -43,12 +49,6 @@ public abstract class UserInterface : MonoBehaviour
     }
 
     public abstract void CreateSlots();
-    /*
-    public void Update()
-    {
-        slotsOnInterface.UpdateSlotDisplay();
-    }
-    */
     protected void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         EventTrigger trigger = obj.GetComponent<EventTrigger>();

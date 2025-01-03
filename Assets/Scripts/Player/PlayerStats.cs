@@ -101,7 +101,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    //Equiping items in here!
+    //Unequip Items in here
     public void OnBeforeSlotUpdate(InventorySlot _slot)
     {
         if (_slot.BaseObject == null)
@@ -130,7 +130,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    //Unequiping items in here!
+    //Equip Items in here
     public void OnAfterSlotUpdate(InventorySlot _slot)
     {
         if (_slot.BaseObject == null)
