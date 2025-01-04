@@ -64,20 +64,8 @@ public class Item
             }
 
         }
-
         // Sort buffs array by value in descending order
         Array.Sort(buffs, (a, b) => b.value.CompareTo(a.value));
-
-
-
-        // Log sorted buffs
-        foreach (var buff in buffs)
-        {
-            if (buff != null)
-            {
-                Debug.Log($"Attribute: {buff.attributes}, Value: {buff.value}");
-            }
-        }
     }
 }
 

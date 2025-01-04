@@ -35,10 +35,9 @@ public class PlayerInputs : MonoBehaviour
             {
                 UiWindows[UiWindows.Count - 1].SetActive(false);
                 UiWindows.RemoveAt(UiWindows.Count - 1);
-                Debug.Log("Tried to close the window at the " + UiWindows.Count + " Index");
             }
             else Debug.Log("No more windows to close");
         }
-        Debug.Log("There are " + UiWindows.Count + " Ui Windows opened!");
+
     }
 }

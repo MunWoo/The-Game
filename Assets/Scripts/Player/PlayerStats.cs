@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PlayerStats : MonoBehaviour
 {
+    private PlayerMovement playerMovement;
+    private Gun02 gun02;
     [Header("Player Stats")]
     public int currentHealth;
     public int maxHealth;
@@ -25,12 +28,28 @@ public class PlayerStats : MonoBehaviour
     [Header("Attributes")]
     public Attribute[] attributes;
 
+    public int baseDamage;
+    public int baseDefence;
+    public int baseSpeed;
+    public int baseAttackRate;
+    public int totalDamage;
+    public int totalDefence;
+    public int totalSpeed;
+    public int totalAttackRate;
+
     private void Start()
     {
+        //Start basic things we need
+        playerMovement = GetComponent<PlayerMovement>();
+        gun02 = GetComponentInChildren<Gun02>();
+
+
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         experienceBar.SetMaxExperience(maxExperience);
+
         UpdateAttributes();
+        SetBaseAttributes();
     }
 
     public void GainExperience(int experience)
@@ -66,9 +85,58 @@ public class PlayerStats : MonoBehaviour
         currentHealth += 20;
         maxExperience += 20;
 
+        LevelUpAttibutes();
+
         experienceBar.SetMaxExperience(maxExperience);
         experienceBar.UpdateExperience(currentExperience);
         level++;
+    }
+    void LevelUpAttibutes()
+    {
+        foreach (var attribute in attributes)
+        {
+            switch (attribute.type)
+            {
+                case Attributes.Strenght:
+                    attribute.value.BaseValue += 5;
+                    break;
+                case Attributes.Defence:
+                    attribute.value.BaseValue += 5;
+                    break;
+                case Attributes.Speed:
+                    attribute.value.BaseValue += 1 / 2;
+                    break;
+                case Attributes.AttackRate:
+                    attribute.value.BaseValue += 1;
+                    break;
+            }
+        }
+    }
+    public void SetBaseAttributes()
+    {
+        foreach (var attribute in attributes)
+        {
+            switch (attribute.type)
+            {
+                case Attributes.Strenght:
+                    attribute.value.BaseValue = baseDamage;
+                    break;
+                case Attributes.Defence:
+                    attribute.value.BaseValue = baseDefence;
+                    break;
+                case Attributes.Speed:
+                    attribute.value.BaseValue = baseSpeed;
+                    break;
+                case Attributes.AttackRate:
+                    attribute.value.BaseValue = baseAttackRate;
+                    break;
+            }
+        }
+    }
+    void UpdateSpeedValue()
+    {
+        playerMovement.moveSpeed = totalSpeed;
+        gun02.gunDamage = totalDamage;
     }
 
     public void OnCollisionEnter(Collision other)
@@ -87,6 +155,32 @@ public class PlayerStats : MonoBehaviour
     public void AttributeModified(Attribute attribute)
     {
         Debug.Log(string.Concat(attribute.type, "was updated! Value is now ", attribute.value.ModifiedValue));
+        SetAttributes(attribute);
+    }
+    //Change values based on attributes value
+    //Here we can draw the values of all the items equiped in the inventory and feed them to wherever we need
+    private void SetAttributes(Attribute attribute)
+    {
+        switch (attribute.type)
+        {
+            case Attributes.Strenght:
+                totalDamage = attribute.value.ModifiedValue;
+                Debug.Log("Strenght = " + attribute.value.ModifiedValue);
+                break;
+            case Attributes.Defence:
+                Debug.Log("Defence = " + attribute.value.ModifiedValue);
+                totalDefence = attribute.value.ModifiedValue;
+                break;
+            case Attributes.Speed:
+                Debug.Log("Speed = " + attribute.value.ModifiedValue);
+                totalSpeed = attribute.value.ModifiedValue;
+                break;
+            case Attributes.AttackRate:
+                Debug.Log("AttackRate = " + attribute.value.ModifiedValue);
+                totalAttackRate = attribute.value.ModifiedValue;
+                break;
+        }
+        UpdateSpeedValue();
     }
     private void UpdateAttributes()
     {
@@ -140,14 +234,15 @@ public class PlayerStats : MonoBehaviour
             case InterfaceType.Inventory:
                 break;
             case InterfaceType.Equipment:
-                print(string.Concat("Placed ", _slot.BaseObject.name, " on ", _slot.parent.inventory.type, ", Allowed Items: ", string.Join(" ,", _slot.AllowedItems)));
 
                 for (int i = 0; i < _slot.item.buffs.Length; i++)
                 {
                     for (int j = 0; j < attributes.Length; j++)
                     {
                         if (attributes[j].type == _slot.item.buffs[i].attributes)
+                        {
                             attributes[j].value.AddModifier(_slot.item.buffs[i]);
+                        }
                     }
                 }
 
@@ -159,7 +254,10 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void SetAttributes()
+    {
 
+    }
 
     private void OnApplicationQuit()
     {

@@ -4794,6 +4794,22 @@ MonoBehaviour:
     value:
       baseValue: 0
       modifiedValue: 0
+  - type: 2
+    value:
+      baseValue: 0
+      modifiedValue: 0
+  - type: 3
+    value:
+      baseValue: 0
+      modifiedValue: 0
+  baseDamage: 20
+  baseDefence: 10
+  baseSpeed: 5
+  baseAttackRate: 10
+  totalDamage: 0
+  totalDefence: 0
+  totalSpeed: 0
+  totalAttackRate: 0
 --- !u!114 &1139799987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6277,7 +6293,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1716093442}
-  - component: {fileID: 1716093443}
   - component: {fileID: 1716093444}
   m_Layer: 13
   m_Name: Gun
@@ -6303,32 +6318,6 @@ Transform:
   - {fileID: 2014023807}
   m_Father: {fileID: 63209047}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1716093443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716093441}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63580f8041a396f4082cc45d7f8f8827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 7163722035541288072, guid: 95961e87c6da472439576f03412be053, type: 3}
-  shootForce: 300
-  upwardForce: 0
-  timeBetweenShooting: 0.5
-  spread: 0.2
-  reloadTime: 3
-  timeBetweenShoots: 0
-  magazineSize: 20
-  bulletsPerTap: 1
-  allowButtonHold: 1
-  fpsCam: {fileID: 963194227}
-  attackPoint: {fileID: 751824119}
-  ammunitionDisplay: {fileID: 0}
-  allowInvoke: 1
 --- !u!114 &1716093444
 MonoBehaviour:
   m_ObjectHideFlags: 0

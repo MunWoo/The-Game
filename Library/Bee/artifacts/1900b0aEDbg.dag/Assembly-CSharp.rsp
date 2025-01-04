@@ -375,7 +375,7 @@
 "Assets/Scripts/Enemies/Test Enemy/TestEnemy.cs"
 "Assets/Scripts/Gun 01/Bullets/bullet.cs"
 "Assets/Scripts/Gun 01/Gun 01.cs"
-"Assets/Scripts/Gun 01/Gun 02.cs"
+"Assets/Scripts/Gun 01/Gun02.cs"
 "Assets/Scripts/Player/Bars/ExperienceBar.cs"
 "Assets/Scripts/Player/Bars/HealthBar.cs"
 "Assets/Scripts/Player/MoveCamera.cs"
