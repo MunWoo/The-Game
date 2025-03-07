@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a449630394fa440891011cfdb2389b, type: 3}
+  m_Name: SwordSpriteArray
+  m_EditorClassIdentifier: 
+  itemSprites:
+  - {fileID: 21300000, guid: b40d6a6142f098d448a7701b93c0cb0a, type: 3}
+  - {fileID: 21300000, guid: 993b2cba179a89244be8a64592f9f06d, type: 3}
+  - {fileID: 21300000, guid: 7586c179a48d589418be4b99968b5d9e, type: 3}
+  - {fileID: 21300000, guid: 14a15e0b62efaf34caea0a87d186c771, type: 3}
+  - {fileID: 21300000, guid: f00e4c0cbedc08e4a86a9655a93797bf, type: 3}
+  - {fileID: 21300000, guid: dd3b1f1a21d6cc84ebbb6bcf08caf63f, type: 3}

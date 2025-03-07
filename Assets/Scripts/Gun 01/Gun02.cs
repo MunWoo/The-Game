@@ -128,14 +128,12 @@ public class Gun02 : MonoBehaviour
     {
         reloading = true;
         Invoke("ReloadFinished", reloadTime);
-        Debug.Log("Reloading");
     }
 
     private void ReloadFinished()
     {
         bulletsLeft = magazineSize;
         reloading = false;
-        Debug.Log("Can shoot again");
     }
 
 }

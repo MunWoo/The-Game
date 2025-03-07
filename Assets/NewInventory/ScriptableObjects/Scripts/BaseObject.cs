@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 
 public enum ItemType
@@ -10,8 +11,7 @@ public enum ItemType
     Weapon,
     Chestplate,
     Leggins,
-    Shield,
-    Misc
+    Shield
 }
 public enum Attributes
 {
@@ -28,14 +28,7 @@ public class BaseObject : ScriptableObject
     public ItemType itemType;
     public Sprite itemSprite;
     public Item data = new Item();
-    public Item CreateItem()
-    {
-        Item newItem = new Item(this);
-        return newItem;
-    }
-
 }
-
 [System.Serializable]
 public class Item
 {
@@ -46,6 +39,7 @@ public class Item
     {
         Name = "";
         Id = -1;
+
     }
     public Item(BaseObject item)
     {
@@ -67,6 +61,8 @@ public class Item
         // Sort buffs array by value in descending order
         Array.Sort(buffs, (a, b) => b.value.CompareTo(a.value));
     }
+
+
 }
 
 [System.Serializable]

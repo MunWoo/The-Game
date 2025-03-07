@@ -18,7 +18,6 @@ public class TestEnemy : MonoBehaviour
     public float originalScale = 1;
     public int baseExperience;
 
-
     //Patrolling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -41,6 +40,7 @@ public class TestEnemy : MonoBehaviour
     public void Start()
     {
         health = maxHealth;
+
     }
     private void Update()
     {
@@ -120,6 +120,9 @@ public class TestEnemy : MonoBehaviour
         GameObject enemySpawner = GameObject.Find("EnemySpawner");
         EnemySpawner enemySpawnerComponent = enemySpawner.GetComponent<EnemySpawner>();
         enemySpawnerComponent.enemiesAlive--;
+        ItemDrop itemDrop = GetComponent<ItemDrop>();
+        itemDrop.GenerateLoot();
+
         Destroy(gameObject);
 
         //Award player the Experience for the kill
@@ -127,6 +130,7 @@ public class TestEnemy : MonoBehaviour
         PlayerStats playerStats = playerGameObject.GetComponent<PlayerStats>();
         playerStats.GainExperience(baseExperience);
     }
+
 
     private void OnDrawGizmosSelected()
     {

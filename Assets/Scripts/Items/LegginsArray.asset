@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a449630394fa440891011cfdb2389b, type: 3}
+  m_Name: LegginsArray
+  m_EditorClassIdentifier: 
+  itemSprites:
+  - {fileID: 21300000, guid: f68dd6db87572604db904483a8c5518a, type: 3}
+  - {fileID: 21300000, guid: 716d9fcf8a84bbc44bec5d9e8ce22fb7, type: 3}
+  - {fileID: 21300000, guid: 4174784dd0f2e7b41990972798946397, type: 3}
+  - {fileID: 21300000, guid: a911794cb774c59439a4edab867b60be, type: 3}
+  - {fileID: 21300000, guid: 25bda015d7a06ff41a7ef19cf2c946a7, type: 3}
+  - {fileID: 21300000, guid: 1bd158f740b1bca44975d96e5a8578f4, type: 3}

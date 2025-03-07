@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 741409196251491788}
   - component: {fileID: 1926072278478446348}
   - component: {fileID: 640321620001232003}
+  - component: {fileID: 1610535447195672650}
   - component: {fileID: 2494852659528385318}
   m_Layer: 0
   m_Name: Enemy
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.55, y: 2.06, z: -4.04}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -157,7 +158,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8192
-  maxHealth: 120
+  maxHealth: 360
   health: 0
   originalScale: 1
   baseExperience: 10
@@ -168,6 +169,31 @@ MonoBehaviour:
   attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
+--- !u!114 &1610535447195672650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955521723682745667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f67d996995d90f499ccfccb473a5fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDropPrefab: {fileID: 0}
+  transform: {fileID: 0}
+  newItemName: 
+  newItemRarity: 
+  newItemSprite: {fileID: 0}
+  newItemBuffsLenght: 0
+  newItemMinValueBuffsIncrease: 0
+  newItemMaxValueBuffsIncrease: 0
+  weaponSprites: {fileID: 11400000, guid: e76ffd748b09c9b40a0a0da1aa95b516, type: 2}
+  shieldSprites: {fileID: 11400000, guid: 8c36e5e8f312c71449e0749760619969, type: 2}
+  chestSprites: {fileID: 11400000, guid: 32fc17215c6ce214a9d9a7956eb2bf2a, type: 2}
+  helmetSprites: {fileID: 11400000, guid: d8ee9b76df95cb246be7d35972294ce3, type: 2}
+  legginSprites: {fileID: 11400000, guid: 281ab8219e1acf64db7ed52a7f8e5f00, type: 2}
 --- !u!195 &2494852659528385318
 NavMeshAgent:
   m_ObjectHideFlags: 0
