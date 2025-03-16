@@ -56,10 +56,11 @@ public class Item
                     attributes = item.data.buffs[i].attributes
                 };
             }
+            // Sort buffs array by value in descending order
+            Array.Sort(buffs, (a, b) => b.value.CompareTo(a.value));
 
         }
-        // Sort buffs array by value in descending order
-        Array.Sort(buffs, (a, b) => b.value.CompareTo(a.value));
+
     }
 
 

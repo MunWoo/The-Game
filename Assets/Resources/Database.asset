@@ -13,11 +13,4 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: 
   ItemObjects:
-  - {fileID: 11400000, guid: 31b38f5edb5b3af4abd207320f3b3c84, type: 2}
-  - {fileID: 11400000, guid: 746df559ca3225c469fc857d45b2742b, type: 2}
-  - {fileID: 11400000, guid: 9f5f893d03d4581438f24ca7323a9ec4, type: 2}
-  - {fileID: 11400000, guid: bb679e79ef098f04ab27c2f6014af7f6, type: 2}
-  - {fileID: 11400000, guid: 4a94ba7410e3ada46a239c457ede7565, type: 2}
-  - {fileID: 11400000, guid: 3f1e55284d51e964ead542622e783758, type: 2}
-  - {fileID: 11400000, guid: db7012cee4cfd3546a12e9b9dd5bdc07, type: 2}
-  - {fileID: 11400000, guid: 85fe2dcb4b50e9f419acf5c1e756cead, type: 2}
+  - {fileID: 11400000, guid: da751acc3ec971f48b4772bfe7bbf7c8, type: 2}

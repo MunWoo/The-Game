@@ -30,6 +30,10 @@ public class Inventory : ScriptableObject
         if (EmptySlotCount <= 0)
             return false;
         InventorySlot slot = FindItemOnInventory(_item);
+
+        //if (itemDatabase.ItemObjects[_item.Id] == null)
+
+
         if (!itemDatabase.ItemObjects[_item.Id].stackable || slot == null)
         {
             SetEmptySlot(_item, _amount);
@@ -38,6 +42,7 @@ public class Inventory : ScriptableObject
         slot.AddAmount(_amount);
         return true;
     }
+
     public int EmptySlotCount
     {
         get

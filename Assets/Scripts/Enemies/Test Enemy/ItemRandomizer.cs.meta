@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 0f67d996995d90f499ccfccb473a5fa0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - itemDropPrefab: {instanceID: 0}
+  - transform: {instanceID: 0}
+  - newItemSprite: {instanceID: 0}
+  - weaponSprites: {fileID: 11400000, guid: e76ffd748b09c9b40a0a0da1aa95b516, type: 2}
+  - shieldSprites: {fileID: 11400000, guid: 8c36e5e8f312c71449e0749760619969, type: 2}
+  - chestSprites: {fileID: 11400000, guid: 32fc17215c6ce214a9d9a7956eb2bf2a, type: 2}
+  - helmetSprites: {fileID: 11400000, guid: d8ee9b76df95cb246be7d35972294ce3, type: 2}
+  - legginSprites: {fileID: 11400000, guid: 281ab8219e1acf64db7ed52a7f8e5f00, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

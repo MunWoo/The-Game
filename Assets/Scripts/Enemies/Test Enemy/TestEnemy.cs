@@ -120,7 +120,7 @@ public class TestEnemy : MonoBehaviour
         GameObject enemySpawner = GameObject.Find("EnemySpawner");
         EnemySpawner enemySpawnerComponent = enemySpawner.GetComponent<EnemySpawner>();
         enemySpawnerComponent.enemiesAlive--;
-        ItemDrop itemDrop = GetComponent<ItemDrop>();
+        ItemRandomizer itemDrop = GetComponent<ItemRandomizer>();
         itemDrop.GenerateLoot();
 
         Destroy(gameObject);

@@ -68,6 +68,7 @@ public class ItemDescriptionWindow : MonoBehaviour
                 {
                     occupiedSlots++;
                 }
+                else break;
             }
             //Populate the text components with the buffs and deactivate the unused ones
             for (int i = 0; i < textComponents.Length; i++)

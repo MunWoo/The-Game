@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb4fa201ea0632f4a8ed6535fa8821ad, type: 3}
+  m_Name: Item_Round Shield
+  m_EditorClassIdentifier: 
+  itemName: Round Shield
+  stackable: 0
+  itemType: 4
+  itemSprite: {fileID: 21300000, guid: 914e779bc2d7bfd4c888d4fdade80599, type: 3}
+  data:
+    Name: Round Shield
+    Id: 13
+    buffs: []

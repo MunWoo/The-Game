@@ -71,6 +71,7 @@
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\BaseObject.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputs.cs" />
     <Compile Include="Assets\NewInventory\GroundItem.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Test Enemy\ItemRandomizer.cs" />
     <Compile Include="Assets\Scripts\Player\ThirdPersonCam.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\MiscObject.cs" />
     <Compile Include="Assets\NewInventory\PossibleDrops.cs" />
@@ -89,7 +90,7 @@
     <Compile Include="Assets\NewInventory\ModifiableInt.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\EquipmentObject.cs" />
-    <Compile Include="Assets\Scripts\Enemies\Test Enemy\ItemDrop.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Test Enemy\ItemCreator.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\ItemDatabase.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Bullets\bullet.cs" />
