@@ -11,9 +11,10 @@ public class Enemy01 : BaseEnemy
         enemyType = EnemyType.Normal;
         baseExperience = 10;
 
+
     }
 
-    void Start()
+    void Awake()
     {
         SetStats();
     }

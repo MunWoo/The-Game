@@ -15,6 +15,7 @@ public class EnemyHealthBar : MonoBehaviour
     void Awake()
     {
         _camera = Camera.main;
+
     }
     public void SetHealthBar(int health, int maxHealth)
     {
@@ -26,6 +27,7 @@ public class EnemyHealthBar : MonoBehaviour
     {
         slider.value = currentHealth;
     }
+
 
     void Update()
     {

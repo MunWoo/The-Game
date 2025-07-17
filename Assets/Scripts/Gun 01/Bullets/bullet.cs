@@ -11,7 +11,7 @@ public class bullet : MonoBehaviour
     {
         Destroy(gameObject, despawnTime);
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         // Check if the bullet collided with an enemy (assuming the enemy has a tag called "Enemy")
         if (collision.gameObject.CompareTag("Enemy"))

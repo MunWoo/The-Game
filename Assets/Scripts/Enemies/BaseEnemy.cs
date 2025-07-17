@@ -11,6 +11,7 @@ public enum EnemyType
 
 public abstract class BaseEnemy : MonoBehaviour
 {
+    public bool canDie = true;
     public int maxHealth;
     public int health;
     public int baseExperience;
@@ -49,7 +50,7 @@ public abstract class BaseEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        enemyHealthBar.SetHealthBar(health, maxHealth);
     }
     // Update is called once per frame
     private void Update()
@@ -148,19 +149,23 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void Die()
     {
-        PlayerDebug.instance.kills++;
-        PlayerStats.instance.GainExperience(baseExperience);
-        EnemySpawner.instance.enemiesAlive--;
-
-        //PlayerDebug.Instance.kills += 1;
-        var (chance, min, max) = ItemDropDirector.instance.GetDropChance(enemyType);
-
-        int value = Random.Range(min, max);
-        if (value <= chance)
+        if (canDie)
         {
-            ItemDropDirector.instance.SpawnItem(transform.position);
+            canDie = false;
+            PlayerDebug.instance.kills++;
+            PlayerStats.instance.GainExperience(baseExperience);
+            EnemySpawner.instance.enemiesAlive--;
+
+            //PlayerDebug.Instance.kills += 1;
+            var (chance, min, max) = ItemDropDirector.instance.GetDropChance(enemyType);
+
+            int value = Random.Range(min, max);
+            if (value <= chance)
+            {
+                ItemDropDirector.instance.SpawnItem(transform.position);
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7752631094166534769}
   - component: {fileID: 8464862395284243702}
   - component: {fileID: 3726605712041842195}
-  - component: {fileID: -7240027325777849574}
+  - component: {fileID: 1875849813899486699}
   m_Layer: 19
   m_Name: bullet
   m_TagString: Untagged
@@ -101,7 +101,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -134,7 +134,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &-7240027325777849574
+--- !u!114 &1875849813899486699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

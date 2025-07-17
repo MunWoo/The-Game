@@ -13,7 +13,7 @@ public class Boss01 : BaseEnemy
 
     }
 
-    void Start()
+    void Awake()
     {
         SetStats();
     }
