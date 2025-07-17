@@ -16,7 +16,10 @@ MonoBehaviour:
   stackable: 0
   itemType: 3
   itemSprite: {fileID: 21300000, guid: a911794cb774c59439a4edab867b60be, type: 3}
+  itemRarity: 0
+  itemRarityBorder: {fileID: 0}
+  spriteId: 3
   data:
     Name: High Boots
-    Id: 0
+    Id: 212
     buffs: []

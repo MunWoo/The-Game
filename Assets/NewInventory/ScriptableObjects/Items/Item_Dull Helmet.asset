@@ -16,7 +16,14 @@ MonoBehaviour:
   stackable: 0
   itemType: 0
   itemSprite: {fileID: 21300000, guid: ae701f8350f6739438398e93c3da9399, type: 3}
+  itemRarity: 0
+  itemRarityBorder: {fileID: 0}
+  spriteId: 4
   data:
     Name: Dull Helmet
-    Id: 14
-    buffs: []
+    Id: 214
+    buffs:
+    - attributes: 2
+      value: 5
+      min: 7
+      max: 3

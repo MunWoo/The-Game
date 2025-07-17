@@ -16,7 +16,26 @@ MonoBehaviour:
   stackable: 0
   itemType: 3
   itemSprite: {fileID: 21300000, guid: f68dd6db87572604db904483a8c5518a, type: 3}
+  itemRarity: 0
+  itemRarityBorder: {fileID: 0}
+  spriteId: 0
   data:
     Name: Boots
-    Id: 10
-    buffs: []
+    Id: 217
+    buffs:
+    - attributes: 3
+      value: 12
+      min: 12
+      max: 9
+    - attributes: 3
+      value: 10
+      min: 12
+      max: 9
+    - attributes: 1
+      value: 12
+      min: 12
+      max: 9
+    - attributes: 0
+      value: 12
+      min: 12
+      max: 9

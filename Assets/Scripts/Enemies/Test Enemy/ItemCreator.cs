@@ -6,104 +6,111 @@ using UnityEngine;
 public class ItemCreator : MonoBehaviour
 {
     public GameObject itemDropPrefab;
-    public BaseObject itemPrefab;
-    public ItemBuff[] buffsForItem;
     public ItemDatabase itemDatabase;
-    int newId;
+    public ItemBuff[] buffsForItem;
 
-    public void CreateNewItem(string newItemName, ItemType newItemType, Sprite newItemSprite, string newItemRarity, int newItemBuffsLenght, float newItemMinValueBuffsIncrease, float newItemMaxValueBuffsIncrease)
+    public void CreateNewItem(
+        string newItemName,
+        ItemType newItemType,
+        Sprite newItemSprite,
+        int newItemSpriteId,
+        string newItemRarity,
+        int buffCount,
+        float buffMinMultiplier,
+        float buffMaxMultiplier)
     {
-        newId = itemDatabase.ItemObjects.Length;
+        int newId = itemDatabase.ItemObjects.Length;
 
-        // Create a new instance of BaseObject
+        // Create new BaseObject
         BaseObject newItem = ScriptableObject.CreateInstance<BaseObject>();
-        newItem.stackable = false;
-        newItem.itemName = newItemName;
-        newItem.itemType = newItemType;
-        newItem.itemSprite = newItemSprite;
-        newItem.data = new Item();
-        newItem.data.Id = newId;
-        newItem.data.Name = newItemName;
+        {
+            newItem.stackable = false;
+            newItem.itemName = newItemName;
+            newItem.itemType = newItemType;
+            newItem.itemSprite = newItemSprite;
+            newItem.spriteId = newItemSpriteId;
+            newItem.data = new Item
+            {
+                Id = newId,
+                Name = newItemName
+            };
+        }
+        ;
+
+        if (buffCount > 0)
+        {
+            newItem.data.buffs = GenerateBuffs(buffCount, buffMinMultiplier, buffMaxMultiplier);
+        }
 
         AddItemToDatabase(newItem);
         SaveItemAsset(newItem);
+        SpawnItemObject(newItem);
 
-
-        if (newItemBuffsLenght > 0)
-        {
-            GenerateBuffs(newItemBuffsLenght, newItemMinValueBuffsIncrease, newItemMaxValueBuffsIncrease);
-            newItem.data.buffs = buffsForItem;
-        }
-
-        GameObject newItemObject = Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
-        GroundItem groundItem = newItemObject.GetComponent<GroundItem>();
-
-        if (groundItem != null)
-        {
-            groundItem.itemInfo = newItem;
-        }
-        else Debug.Log("Missing ground item, cannont place item info into the drop item");
-
-
-        Debug.Log($"{newItemName} of Type: {newItemType}, Rarity: {newItemRarity}, Buffs: {newItemBuffsLenght}, Min/Max Buff: {newItemMinValueBuffsIncrease}/{newItemMaxValueBuffsIncrease}");
+        Debug.Log($"{newItemName} | Type: {newItemType} | Rarity: {newItemRarity} | Buffs: {buffCount} | Buff Range: {buffMinMultiplier}/{buffMaxMultiplier}");
     }
 
-    public void GenerateBuffs(int buffsLenght, float buffsMinIncrease, float buffsMaxIncrease)
+    private ItemBuff[] GenerateBuffs(int count, float minMultiplier, float maxMultiplier)
     {
-        GameObject playerGameObject = GameObject.Find("Player");
-        var playerReference = playerGameObject.GetComponent<PlayerStats>(); // Get the PlayerStats component from the GameObject
-        buffsForItem = new ItemBuff[buffsLenght];
-        for (int i = 0; i < buffsLenght; i++)
+        PlayerStats player = GameObject.FindWithTag("Player")?.GetComponent<PlayerStats>();
+        if (player == null)
         {
-            int min = Mathf.FloorToInt(5 + (playerReference.level * buffsMinIncrease));
-            int max = Mathf.FloorToInt(1 + (playerReference.level * buffsMinIncrease));
+            Debug.LogWarning("PlayerStats not found!");
+            return null;
+        }
 
-            Attributes selectedAttribute = (Attributes)Random.Range(0, System.Enum.GetValues(typeof(Attributes)).Length);
+        ItemBuff[] buffs = new ItemBuff[count];
+        int level = GlobalPlayerData.Instance.playerLevel;
 
-            if (selectedAttribute == Attributes.Speed)
+        for (int i = 0; i < count; i++)
+        {
+            Attributes attr = (Attributes)Random.Range(0, System.Enum.GetValues(typeof(Attributes)).Length);
+
+            int min = Mathf.FloorToInt(5 + (level * minMultiplier));
+            int max = Mathf.FloorToInt(1 + (level * maxMultiplier));
+
+            if (attr == Attributes.Speed)
             {
-                max = Random.Range(1, Mathf.FloorToInt(5 + (playerReference.level * buffsMinIncrease)));
-                if (max >= 10)
-                    max = 10;
+                max = Mathf.Clamp(Random.Range(1, Mathf.FloorToInt(5 + (level * minMultiplier))), 1, 10);
             }
 
-            buffsForItem[i] = new ItemBuff(min, max)
-            {
-                attributes = selectedAttribute
-            };
-            Debug.Log(selectedAttribute);
+            buffs[i] = new ItemBuff(min, max) { attributes = attr };
+        }
+
+        buffsForItem = buffs; // optional if still needed externally
+        return buffs;
+    }
+
+    private void AddItemToDatabase(BaseObject item)
+    {
+        int currentLength = itemDatabase.ItemObjects.Length;
+        System.Array.Resize(ref itemDatabase.ItemObjects, currentLength + 1);
+        itemDatabase.ItemObjects[currentLength] = item;
+    }
+
+    private void SpawnItemObject(BaseObject item)
+    {
+        GameObject drop = Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
+        if (drop.TryGetComponent(out GroundItem groundItem))
+        {
+            groundItem.itemInfo = item;
+        }
+        else
+        {
+            Debug.LogWarning("GroundItem component not found on itemDropPrefab!");
         }
     }
 
-    public void AddItemToDatabase(BaseObject item)
+    private void SaveItemAsset(BaseObject item)
     {
+        string folderPath = "Assets/NewInventory/ScriptableObjects/Items";
+        string assetPath = $"{folderPath}/Item_{item.data.Name}.asset";
 
-        int newLenght = itemDatabase.ItemObjects.Length + 1;
-        System.Array.Resize(ref itemDatabase.ItemObjects, newLenght);
-
-        itemDatabase.ItemObjects[itemDatabase.ItemObjects.Length - 1] = item;
-
-    }
-
-    // Save the ScriptableObject (BaseObject) in a specific folder
-    private void SaveItemAsset(BaseObject newItem)
-    {
-        string folderPath = "Assets/NewInventory/ScriptableObjects/Items";  // Set the folder path where you want to save the item asset
-        string assetPath = folderPath + "/Item_" + newItem.data.Name + ".asset";  // Generate the file path based on the item name
-
-        // Ensure the folder exists
         if (!AssetDatabase.IsValidFolder(folderPath))
         {
             AssetDatabase.CreateFolder("Assets/NewInventory/ScriptableObjects", "Items");
         }
 
-        // Save the asset
-        AssetDatabase.CreateAsset(newItem, assetPath);
+        AssetDatabase.CreateAsset(item, assetPath);
         AssetDatabase.SaveAssets();
-
-        // Log the saved asset path
-        Debug.Log("Item asset saved at: " + assetPath);
     }
-
 }
-

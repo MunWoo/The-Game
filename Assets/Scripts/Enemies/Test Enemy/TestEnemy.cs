@@ -11,9 +11,11 @@ public class TestEnemy : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    [SerializeField] EnemyHealthBar enemyHealthBar;
+
     //EnemyStats
     [Header("Enemy Stats")]
-    public int maxHealth;
+    public int maxHealth = 120;
     public int health;
     public float originalScale = 1;
     public int baseExperience;
@@ -30,16 +32,23 @@ public class TestEnemy : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    private ItemRandomizer itemDrop;
+    private PlayerStats playerStats;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        enemyHealthBar = GetComponentInChildren<EnemyHealthBar>();
     }
 
     public void Start()
     {
         health = maxHealth;
+        itemDrop = GetComponent<ItemRandomizer>();
+        GameObject playerGameObject = GameObject.Find("Player");
+        playerStats = playerGameObject.GetComponent<PlayerStats>();
+        enemyHealthBar.SetHealthBar(health, maxHealth);
 
     }
     private void Update()
@@ -51,6 +60,7 @@ public class TestEnemy : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patrolling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
+
     }
 
     private void Patrolling()
@@ -111,6 +121,7 @@ public class TestEnemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        enemyHealthBar.UpdateHealthBar(health);
 
         if (health <= 0) Invoke(nameof(DestroyEnemy), 0.01f);
 
@@ -120,15 +131,14 @@ public class TestEnemy : MonoBehaviour
         GameObject enemySpawner = GameObject.Find("EnemySpawner");
         EnemySpawner enemySpawnerComponent = enemySpawner.GetComponent<EnemySpawner>();
         enemySpawnerComponent.enemiesAlive--;
-        ItemRandomizer itemDrop = GetComponent<ItemRandomizer>();
         itemDrop.GenerateLoot();
 
         Destroy(gameObject);
 
         //Award player the Experience for the kill
-        GameObject playerGameObject = GameObject.Find("Player");
-        PlayerStats playerStats = playerGameObject.GetComponent<PlayerStats>();
         playerStats.GainExperience(baseExperience);
+        PlayerDebug.instance.kills += 1;
+        //playerDebug.UpdateDebug();
     }
 
 

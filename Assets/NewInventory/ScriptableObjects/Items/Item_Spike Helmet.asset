@@ -15,8 +15,15 @@ MonoBehaviour:
   itemName: Spike Helmet
   stackable: 0
   itemType: 0
-  itemSprite: {fileID: 21300000, guid: b30bf5a45f1a641449eb41b4de96c45d, type: 3}
+  itemSprite: {fileID: 21300000, guid: eb9d13ac21d7e384fb0692a6b6eab85e, type: 3}
+  itemRarity: 0
+  itemRarityBorder: {fileID: 0}
+  spriteId: 3
   data:
     Name: Spike Helmet
-    Id: 9
-    buffs: []
+    Id: 209
+    buffs:
+    - attributes: 0
+      value: 7
+      min: 8
+      max: 4

@@ -18,6 +18,7 @@ public class ItemDescriptionWindow : MonoBehaviour
     public GameObject attribute4;
     private TextMeshProUGUI[] textComponents;
     private GameObject[] gameObjectsArray;
+    private Color textColor;
     public void DisplayDescription(InventorySlot obj)
     {
         Image image = imageObject.GetComponent<Image>();
@@ -39,7 +40,9 @@ public class ItemDescriptionWindow : MonoBehaviour
 
             //Display the description of the object     (if it has one) update this one
             TextMeshProUGUI description = itemDescription.GetComponent<TextMeshProUGUI>();
-            description.text = "";
+            GetDescriptionColor(obj.BaseObject.itemRarity);
+            description.color = textColor;
+            description.text = obj.BaseObject.itemRarity.ToString();
 
 
             //Get attributes
@@ -87,6 +90,34 @@ public class ItemDescriptionWindow : MonoBehaviour
 
     }
 
+    public void GetDescriptionColor(ItemRarity itemRarity)
+    {
+        switch (itemRarity)
+        {
+            case ItemRarity.Normal:
+                textColor = Color.white;
+                break;
+            case ItemRarity.Magic:
+                textColor = Color.blue;
+                break;
+            case ItemRarity.Special:
+                textColor = new Color(0.976f, 0.702f, 0.196f); // Burned Yellow
+                break;
+            case ItemRarity.Ultra:
+                textColor = new Color(0.18f, 0.173f, 0.494f); // Darked Blue
+                break;
+            case ItemRarity.Legendary:
+                textColor = new Color(0.914f, 0.31f, 0.102f); // Orange
+                break;
+            case ItemRarity.Mythical:
+                textColor = new Color(0.902f, 0f, 0.494f); // Pinkish Purple
+                break;
+            default:
+                Debug.LogWarning($"No color defined for rarity: {itemRarity}");
+                textColor = Color.gray;
+                break;
+        }
+    }
 
     public void CloseDisplayWindow()
     {

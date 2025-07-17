@@ -27,12 +27,16 @@ public class Inventory : ScriptableObject
 
     public bool AddItem(Item _item, int _amount)
     {
+        if (_item.Id < 0 || _item.Id >= itemDatabase.ItemObjects.Length)
+        {
+            Debug.LogWarning($"Invalid item ID: {_item.Id}");
+            return false;
+        }
+
         if (EmptySlotCount <= 0)
             return false;
+
         InventorySlot slot = FindItemOnInventory(_item);
-
-        //if (itemDatabase.ItemObjects[_item.Id] == null)
-
 
         if (!itemDatabase.ItemObjects[_item.Id].stackable || slot == null)
         {
@@ -210,6 +214,7 @@ public class InventorySlot
             OnBeforeUpdate.Invoke(this);
         item = _item;
         amount = _amount;
+
         if (OnAfterUpdate != null)
             OnAfterUpdate.Invoke(this);
     }

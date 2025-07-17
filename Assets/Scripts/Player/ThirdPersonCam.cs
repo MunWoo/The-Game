@@ -28,7 +28,7 @@ public class ThirdPersonCam : MonoBehaviour
         Combat
     }
 
-    private bool isCursorLocked = true; // Initial state
+
 
     private void Start()
     {
@@ -37,18 +37,7 @@ public class ThirdPersonCam : MonoBehaviour
 
     void Update()
     {
-        // Check if Keypad 1 is pressed
-        if (Input.GetKeyDown(KeyCode.Keypad1))
-        {
-            // Toggle the cursor lock state
-            isCursorLocked = !isCursorLocked;
 
-            // Apply the toggle to the cursor settings
-            Cursor.visible = !isCursorLocked;
-            Cursor.lockState = isCursorLocked ? CursorLockMode.Locked : CursorLockMode.None;
-
-            Debug.Log("Cursor is now " + (isCursorLocked ? "Locked and Invisible" : "Unlocked and Visible"));
-        }
 
 
 
@@ -70,10 +59,15 @@ public class ThirdPersonCam : MonoBehaviour
         }
         else if (currentStyle == CameraStyle.Combat)
         {
-            Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
-            orientation.forward = dirToCombatLookAt.normalized;
+            // Check if the raycast hit anything
+            Vector3 fixedDirection;
 
-            playerObj.forward = dirToCombatLookAt.normalized;
+            fixedDirection = ((combatLookAt.position - (combatLookAt.transform.forward * 4)) - playerObj.position).normalized;
+
+            Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
+
+            orientation.forward = fixedDirection.normalized;
+            playerObj.forward = fixedDirection.normalized;
         }
 
 

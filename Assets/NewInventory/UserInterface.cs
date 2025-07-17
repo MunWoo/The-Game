@@ -33,17 +33,20 @@ public abstract class UserInterface : MonoBehaviour
         slotsOnInterface.UpdateSlotDisplay();
     }
 
+    //Draw the objects of the inventory here and below ---------------------------
     private void OnSlotUpdate(InventorySlot _slot)
     {
         if (_slot.item.Id >= 0)
         {
             _slot.slotDisplay.transform.Find("ItemSprite").GetComponent<Image>().sprite = _slot.BaseObject.itemSprite;
+            _slot.slotDisplay.transform.Find("ItemBorder").GetComponent<Image>().sprite = _slot.BaseObject.itemRarityBorder;
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amount == 1 ? "" : _slot.amount.ToString();
 
         }
         else
         {
             _slot.slotDisplay.transform.Find("ItemSprite").GetComponent<Image>().sprite = null;
+            _slot.slotDisplay.transform.Find("ItemBorder").GetComponent<Image>().sprite = null;
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
         }
     }
@@ -143,13 +146,16 @@ public static class ExtensionMethods
         {
             if (_slot.Value.item.Id >= 0)
             {
+                //Draw items slots in here aswell ----------------------
                 _slot.Key.transform.Find("ItemSprite").GetComponent<Image>().sprite = _slot.Value.BaseObject.itemSprite;
+                _slot.Key.transform.Find("ItemBorder").GetComponent<Image>().sprite = _slot.Value.BaseObject.itemRarityBorder;
                 _slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = _slot.Value.amount == 1 ? "" : _slot.Value.amount.ToString();
 
             }
             else
             {
                 _slot.Key.transform.Find("ItemSprite").GetComponent<Image>().sprite = null;
+                _slot.Key.transform.Find("ItemBorder").GetComponent<Image>().sprite = null;
                 _slot.Key.GetComponentInChildren<TextMeshProUGUI>().text = "";
             }
         }

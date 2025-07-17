@@ -16,7 +16,10 @@ MonoBehaviour:
   stackable: 0
   itemType: 1
   itemSprite: {fileID: 21300000, guid: 993b2cba179a89244be8a64592f9f06d, type: 3}
+  itemRarity: 0
+  itemRarityBorder: {fileID: 0}
+  spriteId: 1
   data:
     Name: Sword
-    Id: 5
+    Id: 210
     buffs: []

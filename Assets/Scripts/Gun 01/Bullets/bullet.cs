@@ -17,7 +17,7 @@ public class bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // Get the enemy's script and call a method to apply damage
-            TestEnemy enemy = collision.gameObject.GetComponent<TestEnemy>();
+            BaseEnemy enemy = collision.gameObject.GetComponent<BaseEnemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);  // Apply damage to the enemy

@@ -18,11 +18,10 @@ public class ItemRandomizer : MonoBehaviour
 };
 
     [Header("Item Info")]
-    public GameObject itemDropPrefab;
-    public new Transform transform;
     public string newItemName;
     public string newItemRarity;
     public Sprite newItemSprite;
+    public int newItemSpriteId;
     public int newItemBuffsLenght;
     public float newItemMinValueBuffsIncrease; //Increase the MIN values of the buffs
     public float newItemMaxValueBuffsIncrease; //Increase the MAX values of the buffs
@@ -32,12 +31,15 @@ public class ItemRandomizer : MonoBehaviour
     public SpriteArrays helmetSprites;
     public SpriteArrays legginSprites;
 
+    private ItemCreator itemCreator;
 
+    public void Start()
+    {
+        itemCreator = GetComponent<ItemCreator>();
+    }
     public void GenerateLoot()
     {
-        ItemCreator itemCreator = GetComponent<ItemCreator>();
-        //Item Spawn Chance (in %)
-        int ItemSpawnChance = 100;
+        int ItemSpawnChance = 10; //Item Spawn Chance (in %).
         int randomValue = Random.Range(0, 100);
         if (randomValue < ItemSpawnChance)
         {
@@ -48,7 +50,7 @@ public class ItemRandomizer : MonoBehaviour
             // Determine Item Rarity
             newItemRarity = GetRandomRarity(itemRarity);
             ItemRarityCase(newItemRarity);
-            itemCreator.CreateNewItem(newItemName, newItemType, newItemSprite, newItemRarity, newItemBuffsLenght, newItemMinValueBuffsIncrease, newItemMaxValueBuffsIncrease);
+            itemCreator.CreateNewItem(newItemName, newItemType, newItemSprite, newItemSpriteId, newItemRarity, newItemBuffsLenght, newItemMinValueBuffsIncrease, newItemMaxValueBuffsIncrease);
             //Debug.Log($"{newItemName} of Type: {newItemType}, Rarity: {newItemRarity}, Buffs: {newItemBuffsLenght}, Min/Max Buff: {newItemMinValueBuffsIncrease}/{newItemMaxValueBuffsIncrease}");
         }
     }
@@ -62,6 +64,7 @@ public class ItemRandomizer : MonoBehaviour
                 {
                     newItemName = null;
                     var randomIndex = Random.Range(0, weaponSprites.itemSprites.Length - 1);
+                    newItemSpriteId = randomIndex;
                     newItemSprite = weaponSprites.itemSprites[randomIndex];
                     switch (randomIndex)
                     {
@@ -89,6 +92,7 @@ public class ItemRandomizer : MonoBehaviour
                 {
                     newItemName = null;
                     var randomIndex = Random.Range(0, shieldSprites.itemSprites.Length - 1);
+                    newItemSpriteId = randomIndex;
                     newItemSprite = shieldSprites.itemSprites[randomIndex];
                     switch (randomIndex)
                     {
@@ -114,6 +118,7 @@ public class ItemRandomizer : MonoBehaviour
                 {
                     newItemName = null;
                     var randomIndex = Random.Range(0, chestSprites.itemSprites.Length - 1);
+                    newItemSpriteId = randomIndex;
                     newItemSprite = chestSprites.itemSprites[randomIndex];
                     switch (randomIndex)
                     {
@@ -139,6 +144,7 @@ public class ItemRandomizer : MonoBehaviour
                 {
                     newItemName = null;
                     var randomIndex = Random.Range(0, legginSprites.itemSprites.Length - 1);
+                    newItemSpriteId = randomIndex;
                     newItemSprite = legginSprites.itemSprites[randomIndex];
                     switch (randomIndex)
                     {
@@ -164,6 +170,7 @@ public class ItemRandomizer : MonoBehaviour
                 {
                     newItemName = null;
                     var randomIndex = Random.Range(0, helmetSprites.itemSprites.Length - 1);
+                    newItemSpriteId = randomIndex;
                     newItemSprite = helmetSprites.itemSprites[randomIndex];
                     switch (randomIndex)
                     {
@@ -304,123 +311,6 @@ public class ItemRandomizer : MonoBehaviour
                 break;
 
         }
-
-        /*
-    public class WeightedRandomDict : MonoBehaviour
-    {
-        void Start()
-        {
-            Dictionary<string, int> lootTable = new Dictionary<string, int>()
-            {
-                { "Common", 50 },
-                { "Rare", 30 },
-                { "Epic", 15 },
-                { "Legendary", 5 }
-            };
-
-            string selectedItem = GetRandomWeightedItem(lootTable);
-            Debug.Log("Selected Item: " + selectedItem);
-        }
-
-        string GetRandomWeightedItem(Dictionary<string, int> items)
-        {
-            int totalWeight = 0;
-            foreach (var item in items.Values)
-                totalWeight += item;
-
-            int randomValue = UnityEngine.Random.Range(0, totalWeight);
-            int currentSum = 0;
-
-            foreach (var item in items)
-            {
-                currentSum += item.Value;
-                if (randomValue < currentSum)
-                    return item.Key;
-            }
-
-            return null;
-        }
-    }
-
-
-
-
-
-            private void GenerateLoot()
-            {
-
-            }
-
-            private void GenerateBuffs(BaseObject itemPrefabReference)
-            {
-                GameObject playerGameObject = GameObject.Find("Player"); // Find the player GameObject
-                playerReference = playerGameObject.GetComponent<PlayerStats>(); // Get the PlayerStats component from the GameObject
-
-                var buffs = itemPrefabReference.data.buffs;
-                int[] buffsChance = { 30, 25, 20, 15, 10 };
-                int buffsSize = GetRandomBuffSize(buffsChance);
-                Debug.Log("The loot its going to have " + buffsSize + " buffs");
-                ItemBuff[] newItemBuff = new ItemBuff[buffsSize];
-
-                for (int i = 0; i < buffsSize; i++)
-                {
-                    int min = Random.Range(1, (playerReference.level * 2));
-                    int max = Random.Range(1, (playerReference.level * 5));
-
-                    Attributes selectedAttribute = (Attributes)Random.Range(0, System.Enum.GetValues(typeof(Attributes)).Length);
-                    if (selectedAttribute == Attributes.Speed)
-                    {
-                        max = Random.Range(1, (playerReference.level * 5));
-                        if (max >= 10)
-                            max = 10;
-                    }
-                    newItemBuff[i] = new ItemBuff(min, max)
-                    {
-                        attributes = (Attributes)Random.Range(0, System.Enum.GetValues(typeof(Attributes)).Length),
-                    };
-                }
-                itemPrefabReference.data.buffs = newItemBuff;
-
-                //Attributes weight = GetRandomBuffs(buffsSize);
-
-            }
-            int GetRandomBuffSize(int[] buffsChance)
-            {
-                int[] buffWeights = new int[buffsChance.Length];
-                buffWeights[0] = buffsChance[0];
-                for (int i = 1; i < buffsChance.Length; i++)
-                {
-                    buffWeights[i] = buffWeights[i - 1] + buffsChance[i];
-                }
-
-                int randomBuffSize = Random.Range(0, buffWeights[buffWeights.Length - 1]);
-
-                for (int i = 0; i < buffWeights.Length; i++)
-                {
-                    if (randomBuffSize < buffWeights[i])
-                        return i;
-                }
-
-                return buffsChance[0];
-            }
-
-            private Attributes GetRandomBuffs(int buffsChance)
-            {
-                int[] cumulativeWeights = new int[buffsChance];
-                cumulativeWeights[0] = buffsChance;
-                for (int i = 1; i < buffsChance; i++)
-                {
-                    cumulativeWeights[i] = cumulativeWeights[i - 1] + buffsChance;
-                }
-
-                int randomValue = Random.Range(0, cumulativeWeights[cumulativeWeights.Length - 1]);
-
-
-
-                return Attributes.Defence;
-            }
-
-        */
     }
 }
 

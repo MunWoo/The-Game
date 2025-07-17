@@ -16,7 +16,22 @@ MonoBehaviour:
   stackable: 0
   itemType: 1
   itemSprite: {fileID: 21300000, guid: f00e4c0cbedc08e4a86a9655a93797bf, type: 3}
+  itemRarity: 0
+  itemRarityBorder: {fileID: 0}
+  spriteId: 4
   data:
     Name: Axe
-    Id: 4
-    buffs: []
+    Id: 213
+    buffs:
+    - attributes: 1
+      value: 11
+      min: 11
+      max: 8
+    - attributes: 2
+      value: 10
+      min: 11
+      max: 6
+    - attributes: 3
+      value: 9
+      min: 11
+      max: 8

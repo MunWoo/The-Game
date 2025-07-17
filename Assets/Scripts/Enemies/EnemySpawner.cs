@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Xml.Schema;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner instance;
+    List<GameObject> normalEnemies = new List<GameObject>();
+    List<GameObject> bossEnemies = new List<GameObject>();
 
     [Header("Spawning Settings")]
-    public GameObject enemyPrefab;
+    public EnemyArray enemyArray;
     public bool canSpawn;
+    public int numberOfSpawnedEnemies = 1;
+    int repeatSpawn = 0;
     public int maxEnemies = 10;
     public float spawnRadius = 10f;
     public int spawnInterval = 5;
@@ -23,18 +29,41 @@ public class EnemySpawner : MonoBehaviour
     public float bossScale = 2;
     public float bossHp;
 
-    [Header("Enemies Health")]
-
-    public int enemie01Health = 120;
-
-
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
         canSpawn = true;
+        repeatSpawn = numberOfSpawnedEnemies;
+        PopulateNormalEnemies();
+        PopulateBossEnemies();
+
     }
 
+    void PopulateNormalEnemies()
+    {
+        foreach (var enemy in enemyArray.enemies)
+        {
+            if (enemy.GetComponent<BaseEnemy>().enemyType == EnemyType.Normal)
+            {
+                normalEnemies.Add(enemy);
+            }
+        }
+    }
 
+    void PopulateBossEnemies()
+    {
+        foreach (var enemy in enemyArray.enemies)
+        {
+            if (enemy.GetComponent<BaseEnemy>().enemyType == EnemyType.Boss)
+            {
+                bossEnemies.Add(enemy);
+            }
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -44,66 +73,64 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy();
         }
     }
-
     void SpawnEnemy()
     {
         canSpawn = false;
         if (spawnBoss == spawnsForBoss)
         {
             spawnBoss = 0;
-            //Get the health component and get the transform component
-            TestEnemy testEnemy = enemyPrefab.GetComponent<TestEnemy>();
-            Transform testEnemyTransform = enemyPrefab.transform;
-
-            //Multiply the boss HP
-            testEnemy.maxHealth = enemie01Health * healthMultiplier;
-
-            //Spawn boss with increased size
-            testEnemyTransform.localScale = new Vector3(testEnemy.originalScale * bossScale, testEnemy.originalScale * bossScale, testEnemy.originalScale * bossScale);
+            repeatSpawn -= 1;
+            GameObject enemyToSpawn = null;
+            if (bossEnemies.Count > 0)
+            {
+                int randomIndex = Random.Range(0, bossEnemies.Count);
+                enemyToSpawn = bossEnemies[randomIndex];
 
 
+                // Calculate a random position within the spawn radius around the SpawnPoint
+                Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
+                randomOffset.y = 0;  // Keep the spawning on the same Y-level (ground level)
 
-            //Spawn Enemy
-            // Calculate a random position within the spawn radius around the SpawnPoint
-            Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
-            randomOffset.y = 0;  // Keep the spawning on the same Y-level (ground level)
+                Vector3 spawnPosition = transform.position + randomOffset;
 
-            Vector3 spawnPosition = transform.position + randomOffset;
-
-            // Instantiate the enemy at the calculated position
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                // Instantiate the enemy at the calculated position
+                Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+            }
 
         }
         else
         {
             spawnBoss++;
+            repeatSpawn -= 1;
 
+            if (normalEnemies.Count > 0)
+            {
+                int randomIndex = Random.Range(0, normalEnemies.Count);
+                GameObject enemyToSpawn = normalEnemies[randomIndex];
 
-            //Get the health component and get the transform component
-            TestEnemy testEnemy = enemyPrefab.GetComponent<TestEnemy>();
-            Transform testEnemyTransform = enemyPrefab.transform;
-            //Spawn enemy with default scale
-            testEnemyTransform.localScale = new Vector3(testEnemy.originalScale, testEnemy.originalScale, testEnemy.originalScale);
-            //Spawn with normal HP
-            testEnemy.maxHealth = enemie01Health;
+                if (enemyToSpawn == null)
+                    return;
 
+                Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
+                randomOffset.y = 0;
 
-            // Calculate a random position within the spawn radius around the SpawnPoint
-            Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
-            randomOffset.y = 0;  // Keep the spawning on the same Y-level (ground level)
+                Vector3 spawnPosition = transform.position + randomOffset;
 
-            Vector3 spawnPosition = transform.position + randomOffset;
+                Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+            }
 
-            // Instantiate the enemy at the calculated position
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         }
         enemiesAlive++;
-        Invoke("SetSpawnTrue", spawnInterval);
+        if (repeatSpawn > 0)
+            SpawnEnemy();
+        else
+            Invoke("SetSpawnTrue", spawnInterval);
     }
 
     public void SetSpawnTrue()
     {
         canSpawn = true;
+        repeatSpawn = numberOfSpawnedEnemies;
     }
 
 
@@ -116,8 +143,29 @@ public class EnemySpawner : MonoBehaviour
 
 }
 
+/*
+{
+            spawnBoss++;
+            repeatSpawn -= 1;
+
+            if (normalEnemies.Count > 0)
+            {
+                int randomIndex = Random.Range(0, normalEnemies.Count);
+                GameObject enemyToSpawn = normalEnemies[randomIndex];
 
 
+
+                // Calculate a random position within the spawn radius around the SpawnPoint
+                Vector3 randomOffset = Random.insideUnitSphere * spawnRadius;
+                randomOffset.y = 0;  // Keep the spawning on the same Y-level (ground level)
+
+                Vector3 spawnPosition = transform.position + randomOffset;
+
+                // Instantiate the enemy at the calculated position
+                Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+            }
+        }
+*/
 
 
 

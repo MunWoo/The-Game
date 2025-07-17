@@ -59,13 +59,16 @@
     <UnityVersion>2022.3.36f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\Miro\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\Miro\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Users\Miro\Desktop\Tudo\Programas\Unity\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Users\Miro\Desktop\Tudo\Programas\Unity\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemies\Enemy01\Boss01.cs" />
+    <Compile Include="Assets\Scripts\Enemies\Enemy01\Enemy01.cs" />
     <Compile Include="Assets\NewInventory\StaticInterface.cs" />
     <Compile Include="Assets\NewInventory\EquipmentStatsDisplay.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemyHealthBar.cs" />
     <Compile Include="Assets\NewInventory\DynamicInterface.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCam.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\BaseObject.cs" />
@@ -75,6 +78,7 @@
     <Compile Include="Assets\Scripts\Player\ThirdPersonCam.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\MiscObject.cs" />
     <Compile Include="Assets\NewInventory\PossibleDrops.cs" />
+    <Compile Include="Assets\Scripts\Player\GlobalPlayerData.cs" />
     <Compile Include="Assets\Scripts\Player\MoveCamera.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\ExperienceBar.cs" />
@@ -82,15 +86,20 @@
     <Compile Include="Assets\Scripts\Player\Bars\HealthBar.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun02.cs" />
+    <Compile Include="Assets\Scripts\Enemies\BaseEnemy.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerDebug.cs" />
     <Compile Include="Assets\NewInventory\UserInterface.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 01.cs" />
     <Compile Include="Assets\Scripts\Enemies\Test Enemy\TestEnemy.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerTeleport.cs" />
     <Compile Include="Assets\NewInventory\IModifiers.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\SpriteArrays.cs" />
     <Compile Include="Assets\NewInventory\ModifiableInt.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\EquipmentObject.cs" />
+    <Compile Include="Assets\Scripts\Items\ItemDropDirector\ItemDropDirector.cs" />
     <Compile Include="Assets\Scripts\Enemies\Test Enemy\ItemCreator.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemyArray.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\ItemDatabase.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Bullets\bullet.cs" />

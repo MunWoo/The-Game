@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Gun02 : MonoBehaviour
 {
+    public RectTransform crosshairUi;
+
+    public PlayerStats playerStats;
     //Bullet
     public GameObject bullet;
     //Gun Damage
@@ -13,15 +16,15 @@ public class Gun02 : MonoBehaviour
     public float shootForce, upwardForce;
 
     //GunStats
-    public float timeBetweenShooting, spread, reloadTime, timeBetweenShoots;
-    public int magazineSize, bulletsPerTap;
+    public float timeBetweenShooting, timeBetweenShootingQ, spread, reloadTime, timeBetweenShots;
+    public int magazineSize, bulletsPerTap, bulletsPerQ;
     public bool allowButtonHold;
 
     //Bullets on Magazine, Bullets Shot
-    int bulletsLeft, bulletsShot;
+    int bulletsLeft, bulletsShot, bulletsQShot;
 
     //bools
-    bool shooting, readyToShoot, reloading;
+    bool shooting, readyToShoot, reloading, readyToShootQ;
 
     //Reference
     public Camera fpsCam;
@@ -33,6 +36,7 @@ public class Gun02 : MonoBehaviour
 
     //Bug Fixing
     public bool allowInvoke = true;
+    public bool allowInvokeQ = true;
 
 
     private void Awake()
@@ -40,6 +44,8 @@ public class Gun02 : MonoBehaviour
         //Make sure magazine is full and ready to shoot
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        readyToShootQ = true;
+        playerStats = transform.parent.parent.GetComponent<PlayerStats>();
     }
 
     private void Update()
@@ -65,7 +71,7 @@ public class Gun02 : MonoBehaviour
         //Shooting
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
-            //Set bullet shot to 0
+            //Set bullet shot to 033
             bulletsShot = 0;
 
             Shoot();
@@ -76,13 +82,28 @@ public class Gun02 : MonoBehaviour
     private void Shoot()
     {
         readyToShoot = false;
-        // Check if the raycast hit anything
+        int layerToIgnore = LayerMask.NameToLayer("whatIsPlayer");
+        int layerMask = ~(1 << layerToIgnore); // invert bitmask to ignore Player layer
+
+        Ray ray = fpsCam.ScreenPointToRay(crosshairUi.position);
+        RaycastHit hit;
+
         Vector3 targetPoint;
 
-        targetPoint = fpsCam.transform.position + fpsCam.transform.forward * 75; // A point far from the camera if not hitting anything
+        if (Physics.Raycast(ray, out hit, 1000f, layerMask))
+        {
+            targetPoint = hit.point; // Where the crosshair hits in the world
+        }
+        else
+        {
+            // fallback point far away (e.g. if aiming at sky)
+            targetPoint = ray.origin + ray.direction * 1000f;
+        }
 
         // Calculate direction from attackPoint to targetPoint
         Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
+
+        Debug.DrawRay(attackPoint.position, directionWithoutSpread * 100f, Color.red);
 
         //Calculate Spread
         float x = Random.Range(-spread, spread);
@@ -114,7 +135,7 @@ public class Gun02 : MonoBehaviour
 
         //If more than one bulletPerTap repeat shoot function
         //if (bulletsShot < bulletsPerTap && bulletsLeft > 0)
-        //    Invoke("Shoot", timeBetweenShoots);
+        //    Invoke("Shoot", timeBetweenShots);
     }
 
     private void ResetShot()
@@ -122,6 +143,12 @@ public class Gun02 : MonoBehaviour
         //Allow shooting and invoking again
         readyToShoot = true;
         allowInvoke = true;
+    }
+    private void ResetShotQ()
+    {
+        //Allow shooting and invoking again
+        readyToShootQ = true;
+        allowInvokeQ = true;
     }
 
     private void Reload()
@@ -134,6 +161,72 @@ public class Gun02 : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         reloading = false;
+    }
+
+    public void ShootQ()
+    {
+        if (readyToShootQ)
+        {
+            readyToShootQ = false;
+            int layerToIgnore = LayerMask.NameToLayer("whatIsPlayer");
+            int layerMask = ~(1 << layerToIgnore); // invert bitmask to ignore Player layer
+
+            Ray ray = fpsCam.ScreenPointToRay(crosshairUi.position);
+            RaycastHit hit;
+
+            Vector3 targetPoint;
+
+            if (Physics.Raycast(ray, out hit, 1000f, layerMask))
+            {
+                targetPoint = hit.point; // Where the crosshair hits in the world
+            }
+            else
+            {
+                // fallback point far away (e.g. if aiming at sky)
+                targetPoint = ray.origin + ray.direction * 1000f;
+            }
+
+            // Calculate direction from attackPoint to targetPoint
+            Vector3 directionWithoutSpread = targetPoint - attackPoint.position;
+
+            Debug.DrawRay(attackPoint.position, directionWithoutSpread * 100f, Color.red);
+
+            //Calculate Spread
+            float x = Random.Range(-spread, spread);
+            float y = Random.Range(-spread, spread);
+
+            //Calculate new direction with Spread
+            Vector3 directionWithSpread = directionWithoutSpread + new Vector3(x, y, 0); //Just add spread to the last direction
+
+            //Instantiate Bullet
+            GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
+            //Rotate bullet to shoot Direction
+            currentBullet.transform.forward = directionWithSpread.normalized;
+
+            //Add bullet damage here
+            var bulletdamage = gunDamage + playerStats.qDamage;
+            currentBullet.GetComponent<bullet>().damage = bulletdamage;
+
+            //Add Forces to Bullet
+            currentBullet.GetComponent<Rigidbody>().AddForce(directionWithSpread.normalized * shootForce, ForceMode.Impulse);
+            //currentBullet.GetComponent<Rigidbody>().AddForce(fpsCam.transform.//up * shootForce, ForceMode.Impulse); //Add force up, or another direction
+
+            bulletsQShot++;
+            //If more than one bulletPerTap repeat shoot function
+            if (bulletsQShot < bulletsPerQ)
+                Invoke("Shoot", timeBetweenShots);
+
+            //Invoke reset shot (if not already invoked)        Add cooldown here 
+            if (allowInvokeQ)
+            {
+                Invoke("ResetShotQ", timeBetweenShootingQ);
+                allowInvokeQ = false;
+            }
+            Debug.Log("Shot Q");
+        }
+
+
+
     }
 
 }

@@ -15,8 +15,11 @@ MonoBehaviour:
   itemName: Shield
   stackable: 0
   itemType: 4
-  itemSprite: {fileID: 21300000, guid: bee9e1deb3a646e4dbc2c033db5850af, type: 3}
+  itemSprite: {fileID: 21300000, guid: c3583763f3dfeb548b2256fe9bc82ed1, type: 3}
+  itemRarity: 0
+  itemRarityBorder: {fileID: 0}
+  spriteId: 1
   data:
     Name: Shield
-    Id: 7
+    Id: 208
     buffs: []

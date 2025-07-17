@@ -21,12 +21,18 @@ public enum Attributes
     AttackRate
 
 }
+
+public enum ItemRarity { Normal, Magic, Special, Ultra, Legendary, Mythical }
+
 public class BaseObject : ScriptableObject
 {
     public string itemName;
     public bool stackable;
     public ItemType itemType;
     public Sprite itemSprite;
+    public ItemRarity itemRarity;
+    public Sprite itemRarityBorder;
+    public int spriteId;
     public Item data = new Item();
 }
 [System.Serializable]
@@ -62,7 +68,6 @@ public class Item
         }
 
     }
-
 
 }
 

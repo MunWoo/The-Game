@@ -16,7 +16,14 @@ MonoBehaviour:
   stackable: 0
   itemType: 4
   itemSprite: {fileID: 21300000, guid: b52b81adf1c75a04397b62fe62eefc13, type: 3}
+  itemRarity: 0
+  itemRarityBorder: {fileID: 0}
+  spriteId: 4
   data:
     Name: Rectangle Shield
-    Id: 0
-    buffs: []
+    Id: 216
+    buffs:
+    - attributes: 1
+      value: 9
+      min: 9
+      max: 5
