@@ -9,8 +9,8 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner instance;
-    List<GameObject> normalEnemies = new List<GameObject>();
-    List<GameObject> bossEnemies = new List<GameObject>();
+    List<BaseEnemy> normalEnemies = new List<BaseEnemy>();
+    List<BaseEnemy> bossEnemies = new List<BaseEnemy>();
 
     [Header("Spawning Settings")]
     public EnemyArray enemyArray;
@@ -80,7 +80,7 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnBoss = 0;
             repeatSpawn -= 1;
-            GameObject enemyToSpawn = null;
+            BaseEnemy enemyToSpawn = null;
             if (bossEnemies.Count > 0)
             {
                 int randomIndex = Random.Range(0, bossEnemies.Count);
@@ -106,7 +106,7 @@ public class EnemySpawner : MonoBehaviour
             if (normalEnemies.Count > 0)
             {
                 int randomIndex = Random.Range(0, normalEnemies.Count);
-                GameObject enemyToSpawn = normalEnemies[randomIndex];
+                BaseEnemy enemyToSpawn = normalEnemies[randomIndex];
 
                 if (enemyToSpawn == null)
                     return;

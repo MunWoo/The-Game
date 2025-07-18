@@ -64,29 +64,33 @@
     <Analyzer Include="C:\Users\Miro\Desktop\Tudo\Programas\Unity\2022.3.36f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemies\EnemySpawners\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy01\Boss01.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy01\Enemy01.cs" />
     <Compile Include="Assets\NewInventory\StaticInterface.cs" />
     <Compile Include="Assets\NewInventory\EquipmentStatsDisplay.cs" />
     <Compile Include="Assets\Scripts\Enemies\EnemyHealthBar.cs" />
     <Compile Include="Assets\NewInventory\DynamicInterface.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemySpawners\SpawnSet.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCam.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\BaseObject.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemySpawners\StageSpawners.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInputs.cs" />
     <Compile Include="Assets\NewInventory\GroundItem.cs" />
     <Compile Include="Assets\Scripts\Enemies\Test Enemy\ItemRandomizer.cs" />
     <Compile Include="Assets\Scripts\Player\ThirdPersonCam.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemySpawners\SpawnPoint.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\MiscObject.cs" />
     <Compile Include="Assets\NewInventory\PossibleDrops.cs" />
     <Compile Include="Assets\Scripts\Player\GlobalPlayerData.cs" />
     <Compile Include="Assets\Scripts\Player\MoveCamera.cs" />
-    <Compile Include="Assets\Scripts\Enemies\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\ExperienceBar.cs" />
     <Compile Include="Assets\NewInventory\ItemDescriptionWindow.cs" />
     <Compile Include="Assets\Scripts\Player\Bars\HealthBar.cs" />
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun02.cs" />
     <Compile Include="Assets\Scripts\Enemies\BaseEnemy.cs" />
+    <Compile Include="Assets\Scripts\Enemies\EnemySpawnDirector.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerDebug.cs" />
     <Compile Include="Assets\NewInventory\UserInterface.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Gun 01.cs" />
