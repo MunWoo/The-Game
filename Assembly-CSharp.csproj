@@ -80,6 +80,9 @@
 =======
     <Compile Include="Assets\Scripts\Enemies\EnemySpawners\SpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Gun 01\Bullets\EnemyBullet.cs" />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\MiscObject.cs" />
     <Compile Include="Assets\NewInventory\PossibleDrops.cs" />

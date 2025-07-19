@@ -17,6 +17,9 @@ public class Enemy01 : BaseEnemy
         damage = 10;
         timeBetweenAttacks = 2f;
         shootForce = 4f;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 
