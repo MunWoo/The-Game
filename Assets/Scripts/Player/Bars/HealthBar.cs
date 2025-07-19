@@ -11,15 +11,31 @@ public class HealthBar : MonoBehaviour
 
     public void SetMaxHealth(int health)
     {
+<<<<<<< Updated upstream
         slider.maxValue = health;
         slider.value = health;
+=======
+        int maxValueRoundedUp = Mathf.CeilToInt(maxHealth);
+        int valueRoundedUp = Mathf.CeilToInt(health);
+        slider.maxValue = playerStats.currentHealth;
+        slider.value = playerStats.maxHealth;
+        barText.text = $"Hp:{valueRoundedUp}/{maxValueRoundedUp}";
+>>>>>>> Stashed changes
     }
 
     private void Update()
     {
+<<<<<<< Updated upstream
         GameObject Player = GameObject.Find("Player");
         PlayerStats playerStats = Player.GetComponent<PlayerStats>();
         slider.value = playerStats.currentHealth;
+=======
+        int maxValueRoundedUp = Mathf.CeilToInt(playerStats.maxHealth);
+        int valueRoundedUp = Mathf.CeilToInt(playerStats.currentHealth);
+        slider.value = playerStats.currentHealth;
+        slider.maxValue = playerStats.maxHealth;
+        barText.text = $"Hp:{valueRoundedUp}/{maxValueRoundedUp}";
+>>>>>>> Stashed changes
     }
 
 }
