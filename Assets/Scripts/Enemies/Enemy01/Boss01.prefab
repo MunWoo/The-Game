@@ -565,27 +565,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2529c5c7fddac0f459e77f8135e49570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 330
   health: 0
+  defence: 75
   baseExperience: 0
+  canDie: 1
+  isAttacking: 0
   enemyComponent: {fileID: 426390573943828316}
-  agent: {fileID: 0}
+  agent: {fileID: 84197839985417963}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   enemyHealthBar: {fileID: 495198822796505606}
-  enemyType: 0
+  enemyType: 1
   strafeSpeed: 4
   strafeDirection: 1
   strafeTimer: 0
   strafeInterval: 1
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 0
-  timeBetweenAttacks: 0
-  sightRange: 0
-  attackRange: 0
+  walkPointRange: 30
+  sightRange: 20
+  attackRange: 10
   playerInSightRange: 0
   playerInAttackRange: 0

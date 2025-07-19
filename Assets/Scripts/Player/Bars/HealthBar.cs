@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,18 +9,30 @@ public class HealthBar : MonoBehaviour
 {
     public Slider slider;
     public GameObject playerGameObject;
+    public TextMeshProUGUI barText;
+    PlayerStats playerStats;
 
-    public void SetMaxHealth(int health)
+    void Awake()
+    {
+        barText = GetComponentInChildren<TextMeshProUGUI>();
+    }
+    void Start()
+    {
+        playerStats = PlayerStats.instance;
+
+    }
+    public void SetMaxHealth(float health, float maxHealth)
     {
         slider.maxValue = health;
         slider.value = health;
+        barText.text = $"Hp:{health}/{maxHealth}";
     }
 
-    private void Update()
+    public void UpdateHealthBar()
     {
-        GameObject Player = GameObject.Find("Player");
-        PlayerStats playerStats = Player.GetComponent<PlayerStats>();
         slider.value = playerStats.currentHealth;
+        slider.maxValue = playerStats.maxHealth;
+        barText.text = $"Hp:{playerStats.currentHealth}/{playerStats.maxHealth}";
     }
 
 }

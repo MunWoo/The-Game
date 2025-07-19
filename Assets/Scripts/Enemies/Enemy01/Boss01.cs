@@ -12,7 +12,12 @@ public class Boss01 : BaseEnemy
         baseExperience = 50;
 
     }
-
+    protected override void Update()
+    {
+        base.Update();
+        //if (!isAttacking) canAttack = true;
+        //if (isAttacking) Attack();
+    }
     void Awake()
     {
         SetStats();

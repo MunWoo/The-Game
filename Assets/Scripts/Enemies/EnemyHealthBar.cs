@@ -17,13 +17,13 @@ public class EnemyHealthBar : MonoBehaviour
         _camera = Camera.main;
 
     }
-    public void SetHealthBar(int health, int maxHealth)
+    public void SetHealthBar(float health, float maxHealth)
     {
         slider.maxValue = maxHealth;
         slider.value = health;
     }
 
-    public void UpdateHealthBar(int currentHealth)
+    public void UpdateHealthBar(float currentHealth)
     {
         slider.value = currentHealth;
     }

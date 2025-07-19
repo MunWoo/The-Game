@@ -23,9 +23,11 @@ public class EnemySpawnDirector : MonoBehaviour
 
 
     [Header("Spawner Settings")]
-    public bool canSpawn = false;
+    public bool canSpawn;
+    public bool playerInArea = false;
     public float spawnInterval = 10; //in Seconds
-    public int bossChance = 25; //in %
+    public int normalChance = 90;
+    public int bossChance = 10; //in %
     public int bossTrys = 10;
     public int bossesTried = 0;
     public int enemiesToSpawn = 1;
@@ -34,7 +36,7 @@ public class EnemySpawnDirector : MonoBehaviour
 
     [Header("Enemy Randomizer Settings")]
     BaseEnemy enemyToSpawn;
-    GameObject spawnPoint;
+    SpawnPoint spawnPoint;
     EnemyType enemyType;
     List<BaseEnemy> normalEnemies = new List<BaseEnemy>();
     List<BaseEnemy> bossEnemies = new List<BaseEnemy>();
@@ -50,8 +52,8 @@ public class EnemySpawnDirector : MonoBehaviour
         Instance = this;
         //Populate the dictionary with the chances
         {
-            enemiesSpawnChances.Add(EnemyType.Normal, 80); //in %
-            enemiesSpawnChances.Add(EnemyType.Boss, 20); //in %
+            enemiesSpawnChances.Add(EnemyType.Normal, normalChance); //in %
+            enemiesSpawnChances.Add(EnemyType.Boss, bossChance); //in %
         }
     }
 
@@ -60,20 +62,20 @@ public class EnemySpawnDirector : MonoBehaviour
         whereToSpawn = GetSpawnSetForLocation(location);
         PopulateNormalEnemies();
         PopulateBossEnemies();
-        Invoke("CanSpawn", spawnInterval);
+        canSpawn = true;
     }
 
-    void CanSpawn()
+    void ResetSpawn()
     {
         canSpawn = true;
     }
 
     void Update()
     {
-        if (canSpawn)
+        if (playerInArea == true && canSpawn == true)
         {
-            canSpawn = false;
             StartSpawningSequence();
+            canSpawn = false;
         }
     }
 
@@ -110,7 +112,7 @@ public class EnemySpawnDirector : MonoBehaviour
     SpawnSets GetSpawnSetForLocation(Location location)
     {
         string name = location.ToString();
-        SpawnSets spawnSet = stageSpawners.spawnSets.FirstOrDefault(set => set.name == name);
+        SpawnSets spawnSet = stageSpawners.spawnSets.FirstOrDefault(set => set.setName == name);
 
         if (spawnSet == null)
         {
@@ -126,6 +128,7 @@ public class EnemySpawnDirector : MonoBehaviour
             case EnemyType.Normal:
                 {
                     int randomIndex = Random.Range(0, normalEnemies.Count);
+                    if (normalEnemies == null) Debug.Log("There are no " + EnemyType.Normal + "type enemies");
                     enemyToSpawn = normalEnemies[randomIndex];
                 }
                 break;
@@ -133,22 +136,23 @@ public class EnemySpawnDirector : MonoBehaviour
             case EnemyType.Boss:
                 {
                     int randomIndex = Random.Range(0, bossEnemies.Count);
+                    if (bossEnemies == null) Debug.Log("There are no " + EnemyType.Boss + "type enemies");
                     enemyToSpawn = bossEnemies[randomIndex];
                 }
                 break;
         }
     }
 
-    GameObject GetRandomSpawnNode(SpawnSets whereToSpawn)
+    SpawnPoint GetRandomSpawnNode(SpawnSets whereToSpawn)
     {
         int randomIndex = Random.Range(0, whereToSpawn.spawnPoints.Length);
         return whereToSpawn.spawnPoints[randomIndex];
     }
 
-    void SpawnEnemies(BaseEnemy enemyToSpawn, GameObject spawnPoint)
+    void SpawnEnemies(BaseEnemy enemyToSpawn, SpawnPoint spawnPoint)
     {
-        var comp = spawnPoint.GetComponent<SpawnPoint>();
-        comp.SpawnEnemy(enemyToSpawn);
+        spawnPoint.SpawnEnemy(enemyToSpawn);
+        Invoke("ResetSpawn", spawnInterval);
     }
 
     EnemyType GetRandomEnemyTypeByWeight()

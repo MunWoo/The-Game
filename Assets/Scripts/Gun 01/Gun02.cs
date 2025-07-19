@@ -11,12 +11,12 @@ public class Gun02 : MonoBehaviour
     //Bullet
     public GameObject visualBullet;
     //Gun Damage
-    public int gunDamage;
+    public float gunDamage;
     //Bullet force
     public float shootForce, upwardForce;
 
     //GunStats
-    public float timeBetweenShooting, timeBetweenShootingQ, spread, reloadTime, timeBetweenShots;
+    public float timeBetweenShooting, timeBetweenShootingQ, spread, reloadTime, timeBetweenShots, delayDamage;
     public int magazineSize, bulletsPerTap, bulletsPerQ;
     public bool allowButtonHold;
 
@@ -235,7 +235,6 @@ public class Gun02 : MonoBehaviour
         }
 
     }
-
 
     //Visual effects for the bullet to travel from the muzzle to the HitPoint
     private void SpawnVisualBullet(Vector3 start, Vector3 end)

@@ -10,15 +10,16 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats instance;
     private PlayerMovement playerMovement;
     private Gun02 gun02;
-
     private PlayerDebug playerDebug;
 
     [Header("Player Stats")]
-    public int currentHealth;
-    public int maxHealth;
+    public float currentHealth;
+    public float maxHealth;
     public int currentExperience;
     public int maxExperience;
-    public int qDamage = 10;
+    public float qDamage = 10;
+    public int souls;
+    public int damageSouls;
 
     [Header("Sliders")]
 
@@ -31,18 +32,17 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Attributes")]
     public Attribute[] attributes;
-
-    public int baseDamage = 20;
-    public int baseDefence = 50;
-    public int baseSpeed = 5;
-    public int baseAttackRate = 80;
-    public int totalDamage;
-    public int totalDefence;
-    public int totalSpeed;
+    public float baseDamage = 20;
+    public float baseDefence = 50;
+    public float baseSpeed = 5;
+    public float baseAttackRate = 80;
+    public float totalDamage;
+    public float totalDefence;
+    public float totalSpeed;
     public float totalAttackRate;
-    public int percentAttackDamage;
-    public int percentDefence;
-    public int percentSpeed;
+    public float percentAttackDamage;
+    public float percentDefence;
+    public float percentSpeed;
     public float percentAttackRate;
 
     void Awake()
@@ -59,7 +59,7 @@ public class PlayerStats : MonoBehaviour
 
 
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(currentHealth, maxHealth);
         experienceBar.SetMaxExperience(maxExperience);
 
         UpdateAttributes();
@@ -92,6 +92,31 @@ public class PlayerStats : MonoBehaviour
         {
             LevelUp();
         }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        float damageTaken = ArmourFormula(damage);
+
+        currentHealth -= damageTaken;
+
+        healthBar.UpdateHealthBar();
+        if (currentHealth <= 0) Invoke(nameof(Die), 0.01f);
+
+    }
+
+    void Die()
+    {
+        Debug.Log("Hehe you ded");
+        currentHealth = maxHealth;
+    }
+
+
+    float ArmourFormula(float damage)
+    {
+        float damageToHealth = damage * (100f / (100f + totalDefence));
+        Debug.Log("Took " + damageToHealth + " damage");
+        return damageToHealth;
     }
 
     void LevelUp()

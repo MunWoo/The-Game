@@ -1,10 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Spawn Set", menuName = "Enemy Array/New Spawn Set")]
-public class SpawnSets : ScriptableObject
+
+public class SpawnSets : MonoBehaviour
 {
     public string setName;
-    public GameObject[] spawnPoints;
+    public SpawnPoint[] spawnPoints;
+    void Awake()
+    {
+        var list = new System.Collections.Generic.List<SpawnPoint>();
+        foreach (Transform child in transform)
+        {
+            SpawnPoint spawnPoint = child.GetComponent<SpawnPoint>();
+            if (spawnPoint != null)
+            {
+                list.Add(spawnPoint);
+            }
+        }
+        spawnPoints = list.ToArray();
+    }
 }

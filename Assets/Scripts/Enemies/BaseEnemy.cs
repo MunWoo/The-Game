@@ -1,5 +1,7 @@
+
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,11 +13,17 @@ public enum EnemyType
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-    public bool canDie = true;
-    public int maxHealth;
-    public int health;
+
+
+    [Header("Enemy Stats")]
+    public float maxHealth;
+    public float health;
+    public int defence;
     public int baseExperience;
 
+    [Header("Enemy Settings")]
+    public bool canDie = true;
+    public bool isAttacking = false;
     public BaseEnemy enemyComponent;
     public NavMeshAgent agent;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -33,10 +41,6 @@ public abstract class BaseEnemy : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
-    //Attacking
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
-
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
@@ -53,7 +57,7 @@ public abstract class BaseEnemy : MonoBehaviour
         enemyHealthBar.SetHealthBar(health, maxHealth);
     }
     // Update is called once per frame
-    private void Update()
+    protected virtual void Update()
     {
         //check for sightrange and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -64,18 +68,28 @@ public abstract class BaseEnemy : MonoBehaviour
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        health -= damage;
-        enemyHealthBar.UpdateHealthBar(health);
+        float damageTaken = ArmourFormula(damage);
 
+        health -= damageTaken;
+
+        enemyHealthBar.UpdateHealthBar(health);
         if (health <= 0) Invoke(nameof(Die), 0.01f);
 
+    }
+
+    float ArmourFormula(float damage)
+    {
+        float damageToHealth = damage * (100f / (100f + defence));
+        Debug.Log("Took " + damageToHealth + " damage");
+        return damageToHealth;
     }
 
 
     public void Patrolling()
     {
+        //isAttacking = false;
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -96,39 +110,26 @@ public abstract class BaseEnemy : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(walkPoint, -transform.up, 10f, whatIsGround))
             walkPointSet = true;
 
     }
 
     public void ChasePlayer()
     {
+        isAttacking = false;
         agent.SetDestination(PlayerStats.instance.transform.position);
     }
 
     public void AttackPlayer()
     {
+        isAttacking = true;
         //Makes the enemy not move when attacking
         agent.SetDestination(transform.position);
-
         transform.LookAt(PlayerStats.instance.transform);
 
         StrafeSideToSide();
 
-        if (!alreadyAttacked)
-        {
-            //Attack Code Here
-            //
-            //
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-    }
-
-    public void ResetAttack()
-    {
-        alreadyAttacked = false;
     }
 
     private void StrafeSideToSide()
@@ -154,9 +155,7 @@ public abstract class BaseEnemy : MonoBehaviour
             canDie = false;
             PlayerDebug.instance.kills++;
             PlayerStats.instance.GainExperience(baseExperience);
-            EnemySpawner.instance.enemiesAlive--;
 
-            //PlayerDebug.Instance.kills += 1;
             var (chance, min, max) = ItemDropDirector.instance.GetDropChance(enemyType);
 
             int value = Random.Range(min, max);
@@ -169,4 +168,3 @@ public abstract class BaseEnemy : MonoBehaviour
     }
 
 }
-
