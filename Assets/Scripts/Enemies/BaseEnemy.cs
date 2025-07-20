@@ -34,7 +34,6 @@ public abstract class BaseEnemy : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks;
     bool alreadyAttacked;
 
     //States
@@ -53,7 +52,7 @@ public abstract class BaseEnemy : MonoBehaviour
         enemyHealthBar.SetHealthBar(health, maxHealth);
     }
     // Update is called once per frame
-    private void Update()
+    protected virtual void Update()
     {
         //check for sightrange and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -122,13 +121,7 @@ public abstract class BaseEnemy : MonoBehaviour
             //
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-    }
-
-    public void ResetAttack()
-    {
-        alreadyAttacked = false;
     }
 
     private void StrafeSideToSide()

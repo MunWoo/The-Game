@@ -34,7 +34,7 @@ public class Boss01 : BaseEnemy
     protected override void Update()
     {
         base.Update();
-        if (isAttacking && canAttack) Attack();
+        //if (isAttacking && canAttack) Attack();
     }
     public void Attack()
     {
