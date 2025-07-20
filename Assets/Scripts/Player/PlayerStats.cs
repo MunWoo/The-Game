@@ -66,11 +66,6 @@ public class PlayerStats : MonoBehaviour
         CalculateValues();
         //SetBaseAttributes();
     }
-
-    public void TakeDamage(float damage)
-    {
-
-    }
     public void GainExperience(int experience)
     {
         currentExperience += experience;
