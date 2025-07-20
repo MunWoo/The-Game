@@ -15,6 +15,7 @@ public abstract class BaseEnemy : MonoBehaviour
     public int maxHealth;
     public int health;
     public int baseExperience;
+    public bool isAttacking;
 
     public BaseEnemy enemyComponent;
     public NavMeshAgent agent;
@@ -33,10 +34,6 @@ public abstract class BaseEnemy : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
-    //Attacking
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
-
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
@@ -52,8 +49,8 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         enemyHealthBar.SetHealthBar(health, maxHealth);
     }
-    // Update is called once per frame
-    private void Update()
+
+    protected virtual void Update()
     {
         //check for sightrange and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -108,27 +105,13 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public void AttackPlayer()
     {
+        isAttacking = true;
         //Makes the enemy not move when attacking
         agent.SetDestination(transform.position);
 
         transform.LookAt(PlayerStats.instance.transform);
 
         StrafeSideToSide();
-
-        if (!alreadyAttacked)
-        {
-            //Attack Code Here
-            //
-            //
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-    }
-
-    public void ResetAttack()
-    {
-        alreadyAttacked = false;
     }
 
     private void StrafeSideToSide()

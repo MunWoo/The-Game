@@ -59,7 +59,7 @@ public class PlayerStats : MonoBehaviour
 
 
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(currentHealth, maxHealth);
         experienceBar.SetMaxExperience(maxExperience);
 
         UpdateAttributes();
@@ -71,7 +71,10 @@ public class PlayerStats : MonoBehaviour
     {
         currentExperience += experience;
         experienceBar.UpdateExperience(currentExperience);
+    }
 
+    public void TakeDamage(float damage)
+    {
 
     }
 
