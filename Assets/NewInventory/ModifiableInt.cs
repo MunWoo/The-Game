@@ -7,12 +7,12 @@ public delegate void ModifiedEvent();
 public class ModifiableInt
 {
     [SerializeField]
-    private int baseValue;
-    public int BaseValue { get { return baseValue; } set { baseValue = value; UpdateModifiedValue(); } }
+    private float baseValue;
+    public float BaseValue { get { return baseValue; } set { baseValue = value; UpdateModifiedValue(); } }
 
     [SerializeField]
-    private int modifiedValue;
-    public int ModifiedValue { get { return modifiedValue; } private set { modifiedValue = value; } }
+    private float modifiedValue;
+    public float ModifiedValue { get { return modifiedValue; } private set { modifiedValue = value; } }
 
     public List<IModifiers> modifiers = new List<IModifiers>();
     public event ModifiedEvent ValueModified;
@@ -34,7 +34,7 @@ public class ModifiableInt
 
     public void UpdateModifiedValue()
     {
-        var valueToAdd = 0;
+        float valueToAdd = 0;
         for (int i = 0; i < modifiers.Count; i++)
         {
             modifiers[i].AddValue(ref valueToAdd);

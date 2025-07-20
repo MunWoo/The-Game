@@ -341,8 +341,6 @@ public class ItemDropDirector : MonoBehaviour
                     newItemBuffsLength = 2;
                 else if (buffChances <= data.OneBuffChance)
                     newItemBuffsLength = 1;
-                else
-                    newItemBuffsLength = 0;
             }
             else if (rarity == ItemRarity.Special)
             {
@@ -350,8 +348,6 @@ public class ItemDropDirector : MonoBehaviour
                     newItemBuffsLength = 3;
                 else if (buffChances <= data.TwoBuffChance)
                     newItemBuffsLength = 2;
-                else
-                    newItemBuffsLength = 1;
             }
             else if (rarity == ItemRarity.Ultra)
             {

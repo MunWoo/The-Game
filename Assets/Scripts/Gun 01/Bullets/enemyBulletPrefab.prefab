@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3924329944847166440}
   - component: {fileID: 5573151846578736799}
   - component: {fileID: 1763533451959232728}
+  - component: {fileID: 8423225580022835884}
   - component: {fileID: 5343768014300616926}
   m_Layer: 20
   m_Name: enemyBulletPrefab
@@ -106,6 +107,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8423225580022835884
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651843414349849591}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!114 &5343768014300616926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,8 +148,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   despawnTime: 5
-  speed: 60
-  sphereRadius: 0.2
-  hitMask:
-    serializedVersion: 2
-    m_Bits: 8192

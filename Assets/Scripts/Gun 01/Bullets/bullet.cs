@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class bullet : MonoBehaviour
 {
-    public int damage;
-    public int despawnTime;
+    public float damage;
+    public float despawnTime;
     // Start is called before the first frame update
     void Start()
     {

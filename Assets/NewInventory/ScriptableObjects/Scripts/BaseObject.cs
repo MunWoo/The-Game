@@ -75,7 +75,7 @@ public class Item
 public class ItemBuff : IModifiers
 {
     public Attributes attributes;
-    public int value;
+    public float value;
     public int min;
     public int max;
     public ItemBuff(int _min, int _max)
@@ -85,7 +85,7 @@ public class ItemBuff : IModifiers
         GenerateValue();
     }
 
-    public void AddValue(ref int baseValue)
+    public void AddValue(ref float baseValue)
     {
         baseValue += value;
     }

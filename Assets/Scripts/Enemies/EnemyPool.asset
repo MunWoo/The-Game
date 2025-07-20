@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EnemyPool
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 7531433466403748579, guid: eeac1c196468b1f4ab3db895d5ea2453, type: 3}
-  - {fileID: 8046963625272201139, guid: 5573f8f7a65c95d4b852a063a3300205, type: 3}
+  - {fileID: 6967488304058738405, guid: eeac1c196468b1f4ab3db895d5ea2453, type: 3}
+  - {fileID: 426390573943828316, guid: 5573f8f7a65c95d4b852a063a3300205, type: 3}
