@@ -12,8 +12,8 @@ public enum EnemyType
 public abstract class BaseEnemy : MonoBehaviour
 {
     public bool canDie = true;
-    public int maxHealth;
-    public int health;
+    public float maxHealth;
+    public float health;
     public int baseExperience;
     public bool isAttacking;
 
@@ -48,6 +48,7 @@ public abstract class BaseEnemy : MonoBehaviour
     void Start()
     {
         enemyHealthBar.SetHealthBar(health, maxHealth);
+        EnemySpawnDirector.instance.enemiesAlive++;
     }
 
     protected virtual void Update()
@@ -61,7 +62,7 @@ public abstract class BaseEnemy : MonoBehaviour
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         enemyHealthBar.UpdateHealthBar(health);
@@ -137,7 +138,7 @@ public abstract class BaseEnemy : MonoBehaviour
             canDie = false;
             PlayerDebug.instance.kills++;
             PlayerStats.instance.GainExperience(baseExperience);
-            EnemySpawner.instance.enemiesAlive--;
+            EnemySpawnDirector.instance.enemiesAlive--;
 
             //PlayerDebug.Instance.kills += 1;
             var (chance, min, max) = ItemDropDirector.instance.GetDropChance(enemyType);

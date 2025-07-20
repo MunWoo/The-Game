@@ -451,7 +451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 64243288}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.19781092, y: 0.025826033, z: -0.013993836, w: 0.9798}
   m_LocalPosition: {x: 2.881918e-14, y: -0.0000003056436, z: -0.00000036599954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -743,7 +743,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 132263492}
-  playerGameObject: {fileID: 0}
   barText: {fileID: 0}
 --- !u!1 &138527936
 GameObject:
@@ -6056,8 +6055,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1014926274}
-  playerGameObject: {fileID: 0}
-  barText: {fileID: 0}
+  barText: {fileID: 1772210730}
+  playerStats: {fileID: 1139799986}
 --- !u!114 &1014926274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6856,8 +6855,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.55
+  m_Height: 2.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1182157573
@@ -7712,7 +7711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429454745}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.17748922, y: 0.025530865, z: -0.014525368, w: 0.9836843}
   m_LocalPosition: {x: 2.881918e-14, y: -0.0000003056436, z: -0.00000036599954}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7868,7 +7867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471110600}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.21797886, y: 0.026109185, z: -0.013458151, w: 0.9755114}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8513,7 +8512,7 @@ MonoBehaviour:
   enemyArray: {fileID: 11400000, guid: d261dcb29fd158f4086e46cd597e3ecb, type: 2}
   location: 0
   stageSpawners: {fileID: 1771218870}
-  whereToSpawn: {fileID: 0}
+  whereToSpawn: {fileID: 802295030}
   canSpawn: 0
   playerInArea: 1
   spawnInterval: 1
@@ -10894,7 +10893,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2093949966}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.14252609, y: -0.026029496, z: 0.013611714, w: 0.98935515}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

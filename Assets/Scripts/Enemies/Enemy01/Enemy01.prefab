@@ -681,11 +681,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5986b0e5c38303a4d847ad16e4456ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDie: 1
   maxHealth: 120
   health: 0
-  defence: 50
   baseExperience: 0
-  canDie: 1
   isAttacking: 0
   enemyComponent: {fileID: 6967488304058738405}
   agent: {fileID: 3346109116163993757}
@@ -707,12 +706,12 @@ MonoBehaviour:
   attackRange: 20
   playerInSightRange: 0
   playerInAttackRange: 0
-  damage: 0
   canAttack: 0
-  timeBetweenAttacks: 2
   shootForce: 4
+  damage: 0
+  timeBetweenAttacks: 2
   attackPoint: {fileID: 9189784800239687201}
-  attackPrefab: {fileID: 5343768014300616926, guid: 122789fa013da8549be9690bf356ca4b, type: 3}
+  attackPrefab: {fileID: 1085966361682288810, guid: c6a6c5f541c4ba442998e97e8f93ef57, type: 3}
 --- !u!195 &3346109116163993757
 NavMeshAgent:
   m_ObjectHideFlags: 0

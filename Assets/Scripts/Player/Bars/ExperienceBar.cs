@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class ExperienceBar : MonoBehaviour
 {
     public Slider slider;
-    public GameObject playerGameObject;
     public TextMeshProUGUI barText;
     PlayerStats player;
     void Awake()
@@ -20,12 +19,12 @@ public class ExperienceBar : MonoBehaviour
         player = PlayerStats.instance;
         barText.text = $"{player.currentExperience}/{player.maxExperience}";
     }
-    public void SetMaxExperience(int experience)
+    public void SetMaxExperience(float experience)
     {
         slider.maxValue = experience;
     }
 
-    public void UpdateExperience(int experience)
+    public void UpdateExperience(float experience)
     {
         slider.value = experience;
         barText.text = player.currentExperience + "/" + player.maxExperience;

@@ -13,7 +13,7 @@ public enum Location
 
 public class EnemySpawnDirector : MonoBehaviour
 {
-    public static EnemySpawnDirector Instance;
+    public static EnemySpawnDirector instance;
 
     [Header("Enemy Spawn Settings")]
     public EnemyArray enemyArray;
@@ -49,7 +49,7 @@ public class EnemySpawnDirector : MonoBehaviour
 
     void Awake()
     {
-        Instance = this;
+        instance = this;
         //Populate the dictionary with the chances
         {
             enemiesSpawnChances.Add(EnemyType.Normal, normalChance); //in %
@@ -72,7 +72,7 @@ public class EnemySpawnDirector : MonoBehaviour
 
     void Update()
     {
-        if (playerInArea == true && canSpawn == true)
+        if (playerInArea == true && canSpawn == true && enemiesAlive < maxEnemies)
         {
             StartSpawningSequence();
             canSpawn = false;

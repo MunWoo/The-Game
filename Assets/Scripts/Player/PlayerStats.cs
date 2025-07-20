@@ -15,8 +15,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Player Stats")]
     public float currentHealth;
     public float maxHealth;
-    public int currentExperience;
-    public int maxExperience;
+    public float currentExperience;
+    public float maxExperience;
     public float qDamage = 10;
     public int souls;
     public int damageSouls;
@@ -78,13 +78,12 @@ public class PlayerStats : MonoBehaviour
         }
         Debug.Log("I gained : " + experience + " experience");
     }
-    public void TakeDamage(float damage)
-    {
-
-    }
 
     private void Update()
     {
+        if (currentExperience > maxExperience) LevelUp();
+
+        /*
         //Save and Load Inventory
         if (Input.GetKeyDown(KeyCode.F4))
         {
@@ -96,6 +95,7 @@ public class PlayerStats : MonoBehaviour
             inventory.Load();
             equipment.Load();
         }
+        */
     }
 
     public void TakeDamage(float damage)
@@ -104,7 +104,7 @@ public class PlayerStats : MonoBehaviour
 
         currentHealth -= damageTaken;
 
-        healthBar.UpdateHealthBar();
+        //healthBar.UpdateHealthBar();
         if (currentHealth <= 0) Invoke(nameof(Die), 0.01f);
 
     }
