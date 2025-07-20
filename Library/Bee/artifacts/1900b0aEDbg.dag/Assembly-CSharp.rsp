@@ -383,6 +383,7 @@
 "Assets/Scripts/Enemies/Test Enemy/ItemRandomizer.cs"
 "Assets/Scripts/Enemies/Test Enemy/TestEnemy.cs"
 "Assets/Scripts/Gun 01/Bullets/bullet.cs"
+"Assets/Scripts/Gun 01/Bullets/EnemyBullet.cs"
 "Assets/Scripts/Gun 01/Gun 01.cs"
 "Assets/Scripts/Gun 01/Gun02.cs"
 "Assets/Scripts/Items/ItemDropDirector/ItemDropDirector.cs"

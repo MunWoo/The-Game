@@ -6,48 +6,36 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider slider;
-    public GameObject playerGameObject;
+        public Slider slider;
+        public PlayerStats playerStats;
 
-    public void SetMaxHealth(int health)
-    {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        slider.maxValue = health;
-        slider.value = health;
-=======
-=======
->>>>>>> Stashed changes
-        int maxValueRoundedUp = Mathf.CeilToInt(maxHealth);
-        int valueRoundedUp = Mathf.CeilToInt(health);
-        slider.maxValue = playerStats.currentHealth;
-        slider.value = playerStats.maxHealth;
-        barText.text = $"Hp:{valueRoundedUp}/{maxValueRoundedUp}";
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    }
+        public void Awake()
+        {
+                playerStats = PlayerStats.instance;
+        }
 
-    private void Update()
-    {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        GameObject Player = GameObject.Find("Player");
-        PlayerStats playerStats = Player.GetComponent<PlayerStats>();
-        slider.value = playerStats.currentHealth;
-=======
-=======
->>>>>>> Stashed changes
-        int maxValueRoundedUp = Mathf.CeilToInt(playerStats.maxHealth);
-        int valueRoundedUp = Mathf.CeilToInt(playerStats.currentHealth);
-        slider.value = playerStats.currentHealth;
-        slider.maxValue = playerStats.maxHealth;
-        barText.text = $"Hp:{valueRoundedUp}/{maxValueRoundedUp}";
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    }
+        public void SetMaxHealth(int health)
+        {
+                int maxValueRoundedUp = Mathf.CeilToInt(maxHealth);
+                int valueRoundedUp = Mathf.CeilToInt(health);
+                slider.maxValue = playerStats.currentHealth;
+                slider.value = playerStats.maxHealth;
+                barText.text = $"Hp:{valueRoundedUp}/{maxValueRoundedUp}";
+        }
+
+        private void Update()
+        {
+
+                GameObject Player = GameObject.Find("Player");
+                PlayerStats playerStats = Player.GetComponent<PlayerStats>();
+                slider.value = playerStats.currentHealth;
+
+                int maxValueRoundedUp = Mathf.CeilToInt(playerStats.maxHealth);
+                int valueRoundedUp = Mathf.CeilToInt(playerStats.currentHealth);
+                slider.value = playerStats.currentHealth;
+                slider.maxValue = playerStats.maxHealth;
+                barText.text = $"Hp:{valueRoundedUp}/{maxValueRoundedUp}";
+
+        }
 
 }

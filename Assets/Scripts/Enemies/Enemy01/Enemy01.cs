@@ -10,17 +10,13 @@ public class Enemy01 : BaseEnemy
         health = maxHealth;
         enemyType = EnemyType.Normal;
         baseExperience = 10;
-<<<<<<< Updated upstream
 
 
-=======
+
+
         damage = 10;
         timeBetweenAttacks = 2f;
         shootForce = 4f;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     }
 
     void Awake()
@@ -28,9 +24,6 @@ public class Enemy01 : BaseEnemy
         SetStats();
     }
 
-<<<<<<< Updated upstream
-}
-=======
     protected override void Update()
     {
         base.Update();
@@ -56,4 +49,3 @@ public class Enemy01 : BaseEnemy
         canAttack = true;
     }
 }
->>>>>>> Stashed changes

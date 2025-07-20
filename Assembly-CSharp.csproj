@@ -76,15 +76,8 @@
     <Compile Include="Assets\NewInventory\GroundItem.cs" />
     <Compile Include="Assets\Scripts\Enemies\Test Enemy\ItemRandomizer.cs" />
     <Compile Include="Assets\Scripts\Player\ThirdPersonCam.cs" />
-<<<<<<< Updated upstream
-=======
-    <Compile Include="Assets\Scripts\Enemies\EnemySpawners\SpawnPoint.cs" />
-    <Compile Include="Assets\Scripts\Gun 01\Bullets\EnemyBullet.cs" />
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     <Compile Include="Assets\NewInventory\ScriptableObjects\Scripts\MiscObject.cs" />
+    <Compile Include="Assets\Scripts\Gun 01\Bullets\EnemyBullet.cs" />
     <Compile Include="Assets\NewInventory\PossibleDrops.cs" />
     <Compile Include="Assets\Scripts\Player\GlobalPlayerData.cs" />
     <Compile Include="Assets\Scripts\Player\MoveCamera.cs" />
