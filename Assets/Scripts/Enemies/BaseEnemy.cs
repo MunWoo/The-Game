@@ -1,7 +1,5 @@
-
 using System.Collections;
 using System.Collections.Generic;
-using System.Data.Common;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,17 +11,12 @@ public enum EnemyType
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-
-
-    [Header("Enemy Stats")]
-    public float maxHealth;
-    public float health;
-    public int defence;
-    public int baseExperience;
-
-    [Header("Enemy Settings")]
     public bool canDie = true;
-    public bool isAttacking = false;
+    public int maxHealth;
+    public int health;
+    public int baseExperience;
+    public bool isAttacking;
+
     public BaseEnemy enemyComponent;
     public NavMeshAgent agent;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -56,7 +49,7 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         enemyHealthBar.SetHealthBar(health, maxHealth);
     }
-    // Update is called once per frame
+
     protected virtual void Update()
     {
         //check for sightrange and attack range
@@ -68,28 +61,18 @@ public abstract class BaseEnemy : MonoBehaviour
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
-        float damageTaken = ArmourFormula(damage);
-
-        health -= damageTaken;
-
+        health -= damage;
         enemyHealthBar.UpdateHealthBar(health);
+
         if (health <= 0) Invoke(nameof(Die), 0.01f);
 
-    }
-
-    float ArmourFormula(float damage)
-    {
-        float damageToHealth = damage * (100f / (100f + defence));
-        Debug.Log("Took " + damageToHealth + " damage");
-        return damageToHealth;
     }
 
 
     public void Patrolling()
     {
-        //isAttacking = false;
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -110,14 +93,13 @@ public abstract class BaseEnemy : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 10f, whatIsGround))
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
 
     }
 
     public void ChasePlayer()
     {
-        isAttacking = false;
         agent.SetDestination(PlayerStats.instance.transform.position);
     }
 
@@ -126,10 +108,10 @@ public abstract class BaseEnemy : MonoBehaviour
         isAttacking = true;
         //Makes the enemy not move when attacking
         agent.SetDestination(transform.position);
+
         transform.LookAt(PlayerStats.instance.transform);
 
         StrafeSideToSide();
-
     }
 
     private void StrafeSideToSide()
@@ -155,7 +137,9 @@ public abstract class BaseEnemy : MonoBehaviour
             canDie = false;
             PlayerDebug.instance.kills++;
             PlayerStats.instance.GainExperience(baseExperience);
+            EnemySpawner.instance.enemiesAlive--;
 
+            //PlayerDebug.Instance.kills += 1;
             var (chance, min, max) = ItemDropDirector.instance.GetDropChance(enemyType);
 
             int value = Random.Range(min, max);
@@ -168,3 +152,4 @@ public abstract class BaseEnemy : MonoBehaviour
     }
 
 }
+

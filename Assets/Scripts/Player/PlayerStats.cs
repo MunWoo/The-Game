@@ -71,11 +71,16 @@ public class PlayerStats : MonoBehaviour
         currentExperience += experience;
         experienceBar.UpdateExperience(currentExperience);
 
+
         if (currentExperience == maxExperience)
         {
             LevelUp();
         }
         Debug.Log("I gained : " + experience + " experience");
+    }
+    public void TakeDamage(float damage)
+    {
+
     }
 
     private void Update()
