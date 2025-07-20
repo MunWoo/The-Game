@@ -24,7 +24,7 @@ public class Boss01 : BaseEnemy
 
     }
 
-    void Awake()
+    void Start()
     {
         SetStats();
         playerStats = PlayerStats.instance;

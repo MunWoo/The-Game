@@ -18,7 +18,7 @@ public class Enemy01 : BaseEnemy
         //shootForce = 4f;
     }
 
-    void Awake()
+    void Start()
     {
         SetStats();
     }
