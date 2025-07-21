@@ -413,9 +413,9 @@ public class ItemDropDirector : MonoBehaviour
         ItemBuff[] itemBuff = new ItemBuff[length];
         int level = 1; // default fallback level
 
-        if (GlobalPlayerData.Instance != null)
+        if (GlobalPlayerData.instance != null)
         {
-            level = GlobalPlayerData.Instance.playerLevel;
+            level = GlobalPlayerData.instance.playerLevel;
         }
         else
         {

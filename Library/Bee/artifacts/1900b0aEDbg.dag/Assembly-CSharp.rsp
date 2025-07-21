@@ -401,6 +401,7 @@
 "Assets/Scripts/Player/PlayerMovement.cs"
 "Assets/Scripts/Player/PlayerStats.cs"
 "Assets/Scripts/Player/PlayerTeleport.cs"
+"Assets/Scripts/Player/SoulsCrafter.cs"
 "Assets/Scripts/Player/ThirdPersonCam.cs"
 -langversion:9.0
 /deterministic

@@ -16,6 +16,7 @@ public abstract class BaseEnemy : MonoBehaviour
     public float health;
     public int baseExperience;
     public bool isAttacking;
+    public int soulsValue;
 
     public BaseEnemy enemyComponent;
     public NavMeshAgent agent;
@@ -47,7 +48,6 @@ public abstract class BaseEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyHealthBar.SetHealthBar(health, maxHealth);
         EnemySpawnDirector.instance.enemiesAlive++;
     }
 
@@ -139,6 +139,7 @@ public abstract class BaseEnemy : MonoBehaviour
             PlayerDebug.instance.kills++;
             PlayerStats.instance.GainExperience(baseExperience);
             EnemySpawnDirector.instance.enemiesAlive--;
+            SoulsCrafter.instance.enemySouls += soulsValue;
 
             //PlayerDebug.Instance.kills += 1;
             var (chance, min, max) = ItemDropDirector.instance.GetDropChance(enemyType);

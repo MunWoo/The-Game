@@ -59,7 +59,7 @@ public class ItemCreator : MonoBehaviour
         }
 
         ItemBuff[] buffs = new ItemBuff[count];
-        int level = GlobalPlayerData.Instance.playerLevel;
+        int level = GlobalPlayerData.instance.playerLevel;
 
         for (int i = 0; i < count; i++)
         {

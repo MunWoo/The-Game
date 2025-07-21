@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -11,15 +12,14 @@ public class PlayerStats : MonoBehaviour
     private PlayerMovement playerMovement;
     private Gun02 gun02;
     private PlayerDebug playerDebug;
+    public TextMeshProUGUI text_playerLevel;
 
     [Header("Player Stats")]
     public float currentHealth;
     public float maxHealth;
     public float currentExperience;
     public float maxExperience;
-    public float qDamage = 10;
-    public int souls;
-    public int damageSouls;
+    public float qDamage;
 
     [Header("Sliders")]
 
@@ -32,10 +32,12 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Attributes")]
     public Attribute[] attributes;
-    public float baseDamage = 20;
-    public float baseDefence = 50;
-    public float baseSpeed = 5;
-    public float baseAttackRate = 80;
+    public float baseDamage;
+    public int flatDamage;
+    public float baseDefence;
+    public int flatDefence;
+    public float baseSpeed;
+    public float baseAttackRate;
     public float totalDamage;
     public float totalDefence;
     public float totalSpeed;
@@ -44,6 +46,7 @@ public class PlayerStats : MonoBehaviour
     public float percentDefence;
     public float percentSpeed;
     public float percentAttackRate;
+    public float convertedAttackRate;
 
     void Awake()
     {
@@ -52,6 +55,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        SetStats();
         //Start basic things we need
         playerMovement = GetComponent<PlayerMovement>();
         gun02 = GetComponentInChildren<Gun02>();
@@ -66,6 +70,18 @@ public class PlayerStats : MonoBehaviour
         CalculateValues();
         //SetBaseAttributes();
     }
+
+    void SetStats()
+    {
+        baseDamage = 20;
+        baseDefence = 50;
+        baseSpeed = 5;
+        baseAttackRate = 80;
+        qDamage = 10;
+        maxHealth = 120;
+        qDamage = 10;
+    }
+
     public void GainExperience(int experience)
     {
         currentExperience += experience;
@@ -134,7 +150,8 @@ public class PlayerStats : MonoBehaviour
 
         experienceBar.SetMaxExperience(maxExperience);
         experienceBar.UpdateExperience(currentExperience);
-        GlobalPlayerData.Instance.playerLevel++;
+        GlobalPlayerData.instance.playerLevel++;
+        text_playerLevel.text = GlobalPlayerData.instance.playerLevel.ToString();
     }
     void LevelUpAttibutes()
     {
@@ -184,8 +201,6 @@ public class PlayerStats : MonoBehaviour
         playerMovement.moveSpeed = totalSpeed;
         gun02.gunDamage = totalDamage;
         gun02.reloadTime = totalAttackRate;
-        //playerDebug.UpdateDebug();
-        //playerDebug.UpdateEquipmentWindow();
     }
 
     public void OnCollisionEnter(Collision other)
@@ -311,13 +326,13 @@ public class PlayerStats : MonoBehaviour
 
     public void CalculateValues()
     {
-        totalDamage = (baseDamage * (100 + percentAttackDamage)) / 100;
-        totalDefence = (baseDefence * (100 + percentDefence)) / 100;
+        totalDamage = ((baseDamage + flatDamage) * (100 + percentAttackDamage)) / 100;
+        totalDefence = ((baseDefence + baseDefence) * (100 + percentDefence)) / 100;
         totalSpeed = (baseSpeed * (100 + percentSpeed)) / 100;
 
 
         //Attack Speed Formula
-        float convertedAttackRate = (baseAttackRate * ((100 + percentAttackRate) / 100)) / 100f;
+        convertedAttackRate = (baseAttackRate * ((100f + percentAttackRate) / 100f)) / 100f;
         totalAttackRate = 1f / convertedAttackRate;
 
     }

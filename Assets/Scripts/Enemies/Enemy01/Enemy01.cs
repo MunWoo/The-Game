@@ -24,11 +24,13 @@ public class Enemy01 : BaseEnemy
         timeBetweenAttacks = 2f;
         shootForce = 4f;
         canAttack = true;
+        soulsValue = 1;
     }
 
     void Awake()
     {
         SetStats();
+        enemyHealthBar.SetHealthBar(health, maxHealth);
     }
     private void Start()
     {

@@ -70,7 +70,7 @@ public class PlayerDebug : MonoBehaviour
         damageValueT.text = $"Total Damage: {playerStats.totalDamage}";
         killsCountT.text = $"Kills: {kills}";
         speedT.text = $"Speed: {playerStats.totalSpeed}";
-        attackRateT.text = $"Attack Rate: {playerStats.totalAttackRate}";
+        attackRateT.text = $"Attack Rate: {playerStats.convertedAttackRate.ToString()}";
         qDamageT.text = $"Q Damage: {playerStats.qDamage + playerStats.totalDamage}";
         valueIncByKillsT.text = $"Q damage Increase by Kills: {playerStats.qDamage}";
 

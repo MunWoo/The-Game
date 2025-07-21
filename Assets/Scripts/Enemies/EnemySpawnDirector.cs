@@ -75,6 +75,7 @@ public class EnemySpawnDirector : MonoBehaviour
         if (playerInArea == true && canSpawn == true && enemiesAlive < maxEnemies)
         {
             StartSpawningSequence();
+            enemiesAlive++;
             canSpawn = false;
         }
     }
